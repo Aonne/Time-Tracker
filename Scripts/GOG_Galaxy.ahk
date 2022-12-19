@@ -13,25 +13,24 @@
     
 ; Retrive Files =========================================================================================
     FileCreateDir,  %Temp%
-
-    FileCopy, %GOG_Path%\GalaxyClientService.log, %Temp%\galaxy_temp.txt, 1
+    FileCopy, %GOG_Path%\GalaxyClient.log, %Temp%\galaxy_temp.txt, 1
 
 ; Clean ================================================================================================
-    Loop, read, %Temp%\galaxy_temp.txt,                             %Temp%\galaxy_temp2.txt
+    Loop, read, %Temp%\galaxy_temp.txt,                             %Temp%\GOG_Galaxy.txt
     {
-        if InStr(A_LoopReadLine, "Service starting")
-            Fileappend, %A_LoopReadLine%`n
-        
-        if InStr(A_LoopReadLine, "Service stopped")
-            Fileappend, %A_LoopReadLine%`n
+        if InStr(A_LoopReadLine, "Launching process. Command")
+        {
+            trim := SubStr(A_LoopReadLine, 1, InStr(A_LoopReadLine,"Process") - 1)
+            Fileappend, %trim%`n
+        }
 
-        if InStr(A_LoopReadLine, "Created elevated process")
+        if InStr(A_LoopReadLine, "Tracking game session for")
+        {
             Fileappend, %A_LoopReadLine%`n
+        }    
     }
-
 ; Keep ================================================================================================
-    FileRead, Keep,                                                 %Temp%\galaxy_temp2.txt
-    ;GalaxyUpdater
+    FileRead, Keep,                                                 %Temp%\GOG_Galaxy.txt
         i=0
         e:=""
         ToDelete=GalaxyUpdater.exe    ;- skip this and next line
@@ -55,19 +54,19 @@
         }
 
         e .= x . "`r`n"
-        }    
+        }
+    
+    FileDelete, %Temp%\GOG_Galaxy.txt
+    FileAppend, %e%, %Temp%\GOG_Galaxy.txt
 
-    FileAppend, %e%, %Temp%\galaxy_temp3.txt
-    FileRead, bouille, %Temp%\galaxy_temp3.txt
-
-    ;GOG Galaxy\Dependencies
+    FileRead, Keep,                                                 %Temp%\GOG_Galaxy.txt
         i=0
         e:=""
-        ToDelete=GOG Galaxy\Dependencies    ;- skip this and next line
+        ToDelete=Dependencies    ;- skip this and next line
 
 
         ;-------------------
-        Loop,parse,bouille,`n,`r
+        Loop,parse,Keep,`n,`r
         {
         x:=a_loopfield
         if (x="")
@@ -85,75 +84,58 @@
 
         e .= x . "`r`n"
         }
-
+    
+    FileDelete, %Temp%\GOG_Galaxy.txt
     FileAppend, %e%, %Temp%\GOG_Galaxy.txt
 
+    FileRead, Keep,                                                 %Temp%\GOG_Galaxy.txt
+        i=0
+        e:=""
+        ToDelete=CrashReporter.exe    ;- skip this and next line
 
 
-;Replace  =============================================================================================
-    FileRead, Clean, %Temp%\GOG_Galaxy.txt
+        ;-------------------
+        Loop,parse,Keep,`n,`r
+        {
+        x:=a_loopfield
+        if (x="")
+        continue
+        if (i=1)
+        {
+        i=0
+        continue
+        } 
+        if x contains %ToDelete%
+        {
+        i=1
+        continue
+        }
 
-    StringReplace, Clean, Clean,`", , All
+        e .= x . "`r`n"
+        }
+    
+    FileDelete, %Temp%\GOG_Galaxy.txt
+    FileAppend, %e%, %Temp%\GOG_Galaxy.txt
 
-    Clean := StrReplace(Clean, " [Information][ (0)] [TID ", ", ")
-    Clean := StrReplace(Clean, " [Information][#1 (1)] [TID ", ", ")
-    Clean := StrReplace(Clean, "][galaxy_service]: Service starting", ", Started")
-    Clean := StrReplace(Clean, "][galaxy_service]: Service stopped", ", Ended")
-    Clean := StrReplace(Clean, "][galaxy_service]: Created elevated process (", ", ")
-    Clean := StrReplace(Clean, "id:", "")
-    Clean := StrReplace(Clean, ") as user. Process path: ", "")
-    Clean := StrReplace(Clean, " command line ", "")
-    Clean := StrReplace(Clean, "  , working directory: ", "")
+; Replace  ============================================================================================
+    FileRead, Clean,                                                %Temp%\GOG_Galaxy.txt
 
-    Clean := StrReplace(Clean, ".exe", "")
-    Clean := StrReplace(Clean, ".", ":")
-    Clean := StrReplace(Clean, "\", ", ")
-    Clean := StrReplace(Clean, "_", " ")
+    Clean := StrReplace(Clean, "[", "")
+    Clean := StrReplace(Clean, "]", "")
+    Clean := StrReplace(Clean, " Information", ", ")
+    Clean := StrReplace(Clean, "Asynchronous", "Started")
+    Clean := StrReplace(Clean, "galaxy_client: Tracking game session for ", ", ")
+    Clean := StrReplace(Clean, "galaxy_client: Launching process. Command: ", ", ")
 
-; Disks ===========================================================================
-        Clean := StrReplace(Clean, "A:", "")
-        Clean := StrReplace(Clean, "B:", "")
-        Clean := StrReplace(Clean, "C:", "")
-        Clean := StrReplace(Clean, "D:", "")
-        Clean := StrReplace(Clean, "E:", "")
-        Clean := StrReplace(Clean, "F:", "")
-        Clean := StrReplace(Clean, "G:", "")
-        Clean := StrReplace(Clean, "H:", "")
-        Clean := StrReplace(Clean, "I:", "")
-        Clean := StrReplace(Clean, "J:", "")
-        Clean := StrReplace(Clean, "K:", "")
-        Clean := StrReplace(Clean, "L:", "")
-        Clean := StrReplace(Clean, "M:", "")
-        Clean := StrReplace(Clean, "N:", "")
-        Clean := StrReplace(Clean, "O:", "")
-        Clean := StrReplace(Clean, "P:", "")
-        Clean := StrReplace(Clean, "Q:", "")
-        Clean := StrReplace(Clean, "R:", "")
-        Clean := StrReplace(Clean, "S:", "")
-        Clean := StrReplace(Clean, "T:", "")
-        Clean := StrReplace(Clean, "U:", "")
-        Clean := StrReplace(Clean, "V:", "")
-        Clean := StrReplace(Clean, "W:", "")
-        Clean := StrReplace(Clean, "X:", "")
-        Clean := StrReplace(Clean, "Y:", "")
-        Clean := StrReplace(Clean, "Z:", "")
-
-
-
-
-FileDelete,                                                     %Temp%\GOG_Galaxy.txt
-Fileappend,    %Clean%,                                         %Temp%\GOG_Galaxy.txt
+FileDelete,                                                         %Temp%\GOG_Galaxy.txt
+Fileappend, %Clean%,                                                %Temp%\GOG_Galaxy.txt
 
 ;Sort==================================================================================================
-    FileRead,  Clean,                                           %Temp%\GOG_Galaxy.txt
+    FileRead, Clean,                                                %Temp%\GOG_Galaxy.txt
     Sort, Clean, u
 
-    FileDelete,                                                 %Temp%\GOG_Galaxy.txt
-    Fileappend, %Clean%,                                        %Temp%\GOG_Galaxy.txt
+    FileDelete,                                                     %Temp%\GOG_Galaxy.txt
+    FileAppend, %Clean%,                                            %Temp%\GOG_Galaxy.txt
 
 ;Delete ===============================================================================================
-
-FileDelete, %Temp%\galaxy_temp.txt
-FileDelete, %Temp%\galaxy_temp2.txt
-FileDelete, %Temp%\galaxy_temp3.txt
-
+    FileDelete, %Temp%\galaxy_temp.txt
