@@ -13,7 +13,6 @@ Gui, destroy
     Scripts =   %A_ScriptDir%\Scripts
     UI = %A_ScriptDir%\UI
 
-;Gui, Add, Picture, x0 y0 w1000 h1000 , %UI%\Background.jpg
 
 Gui, Add, Button, x50 y9 w80 h30, Logs
 Gui, Add, Button, x150 y9 w80 h30, DoStuff                                                              ; WIP
@@ -162,7 +161,6 @@ Gui, Add, CheckBox, x250 y9 w130 h30 vstartupvar gStartup, Launch at start up
 
 
 Gui, Show,, Time Tracker by Aonne. v%codeversion%
-; x1396 y282 h634 w525
 Return
 
 
