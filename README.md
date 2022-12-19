@@ -24,6 +24,8 @@ Also only people with a NVIDIA GPU will be able to fully use it, as the NVIDIA s
     - For those that are empty, you can click on the launcher's button to add the path to it. (for now only works with Steam and Ryujinx)
 5) Optional:
     - Check "Launch at start up" to not miss any log, as some launchers will reset theirs at every Windows startup.
+6) Read the logs:
+    - Logs will be in the ```Temp``` folder. For now, almost every launchers has a different syntax, something that I'm trying to correct. ```Nvidia.txt``` should have 90% of the logs, it just doesnt registers the name of most old games. That's why you'll need to look at the game's launcher put the piece together.
 
 
 # FAQ
@@ -37,8 +39,11 @@ Also only people with a NVIDIA GPU will be able to fully use it, as the NVIDIA s
 * How much ressources does it use?
   * Close to nothing, it will depends of the speed of your storage but after testing it on an USB stick, everything is done in less than 10sec. Nothing will be running in the background after that.
 
+* Does it work on games without launcher?
+  * Only ```Nvidia``` should log that. Note that for older games, it won't log the name but should still know when it was opened and closed. As for *very* light games hhhhhh it's a gamble, some may work, some may not. I am always trying to find new ways to improve this project.
+
 * Support for AMD GPUs?
   * Not in the close future. Time Tracker will still work with any GPU, just not the NVIDIA script.
 
 * Why Autohotkey?
-  * I only know Autohotkey as I wrote a few scripts with it, nothing big. It's actually my first ever that I can call a project.
+  * I only know Autohotkey as I wrote a few scripts with it, nothing big. It's actually my first project that I can call that.
