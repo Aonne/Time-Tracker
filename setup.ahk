@@ -5,7 +5,6 @@ Loop, read, %A_ScriptDir%\options.ini
     codeversion = %A_LoopReadLine%
 }
 codeversion := StrReplace(codeversion, "version = ", "")
-;@Ahk2Exe-Let U_version = %A_PriorLine~U)^(.+"){1}(.+)".*$~$2%
 Gui, destroy
 
 ; Path ============================================================================================
