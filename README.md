@@ -34,7 +34,7 @@ Also only people with a NVIDIA GPU will be able to fully use it, as the NVIDIA s
   * Every launchers use log files, for error checking. We can look into them and search for a few parameters: What game was launched, when was it launched, and when was it stopped. But those log can still be difficult to read, so Time Tracker will clean them until having only the time and the process/game. In practice it won't be that clean, that's where people will need to interprete.
 
 * What launchers are featured?
- * As for now : Steam, Epic, Minecraft (WIP and can't log custom launchers), GOG (WIP) and Battlenet. Riot, Origin and Ryujinx are the next.
+  * As for now : Steam, Epic, Minecraft (WIP and can't log custom launchers), GOG (WIP) and Battlenet. Riot, Origin and Ryujinx are the next.
 
 * What do you do with my data?
   * Absolutely nothing! Time Tracker doesn't share anything anywhere, in fact it can be use without an internet connection.
