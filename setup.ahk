@@ -1,10 +1,12 @@
 #SingleInstance, Force
+
 Loop, read, %A_ScriptDir%\options.ini 
 {
     if InStr(A_LoopReadLine, "version")
     codeversion = %A_LoopReadLine%
 }
 codeversion := StrReplace(codeversion, "version = ", "")
+;@Ahk2Exe-Let U_version = %A_PriorLine~U)^(.+"){1}(.+)".*$~$2%
 Gui, destroy
 
 ; Path ============================================================================================
@@ -12,6 +14,7 @@ Gui, destroy
     Scripts =   %A_ScriptDir%\Scripts
     UI = %A_ScriptDir%\UI
 
+;Gui, Add, Picture, x0 y0 w1000 h1000 , %UI%\Background.jpg
 
 Gui, Add, Button, x50 y9 w80 h30, Logs
 Gui, Add, Button, x150 y9 w80 h30, DoStuff                                                              ; WIP
@@ -127,7 +130,7 @@ Gui, Add, CheckBox, x250 y9 w130 h30 vstartupvar gStartup, Launch at start up
             Riot = %A_LoopReadLine%
         }
         Riot := StrReplace(Riot, "Riot = ", "")
-        GuiControl,, RiotPath, WIP         %Riot%                                                         ; WIP
+        GuiControl,, RiotPath, %Riot%
 
     ; Battlenet
         Loop, read, %UserOptions% 
@@ -160,6 +163,7 @@ Gui, Add, CheckBox, x250 y9 w130 h30 vstartupvar gStartup, Launch at start up
 
 
 Gui, Show,, Time Tracker by Aonne. v%codeversion%
+; x1396 y282 h634 w525
 Return
 
 
@@ -203,10 +207,17 @@ Return
         Steam = %SteamPath%
     return
 
+    ButtonRiot:
+        FileSelectFile, RiotPath, 3, , Open a file, Text Documents (RiotClientServices.exe)
+        RiotPath := StrReplace(RiotPath, "RiotClientServices.exe", "")
+        GuiControl,, RiotPath, %RiotPath%
+        Riot = %RiotPath%
+    return
+
     ButtonRyujinx:
         FileSelectFile, RyujinxPath, 3, , Open a file, Text Documents (Ryujinx.exe)
         RyujinxPath := StrReplace(RyujinxPath, "Ryujinx.exe", "Logs")
-        GuiControl,, RyujinxPath, %RyujinxPath%
+        GuiControl,, RyujinxPath, WIP         %Ryujinx%                                                        ; WIP
         Loop, read, %UserOptions%
         {
             InStr(A_LoopReadLine, "Ryujinx")
@@ -235,12 +246,13 @@ GuiClose:
     Nvidia =    `nNvidia = %Nvidia%                                                             ; WIP
     Battlenet = `nBattlenet = %Battlenet%
     Ryujinx =   `nRyujinx = %Ryujinx%
+    Riot =      `nRiot = %Riot%
 
 ; Options
     Startup = `nStartup = %Startupis%
 
 
-Featured = %Steam%%Epic%%GOG%%Minecraft%%Nvidia%%Battlenet%%Ryujinx%
+Featured = %Steam%%Epic%%GOG%%Minecraft%%Nvidia%%Battlenet%%Ryujinx%%Riot%
 
 Content = [Path]%Featured%`n`n[Options]%Startup%
 
