@@ -6,7 +6,6 @@ Loop, read, %A_ScriptDir%\options.ini
     codeversion = %A_LoopReadLine%
 }
 codeversion := StrReplace(codeversion, "version = ", "")
-;@Ahk2Exe-Let U_version = %A_PriorLine~U)^(.+"){1}(.+)".*$~$2%
 Gui, destroy
 
 ; Path ============================================================================================
@@ -14,7 +13,6 @@ Gui, destroy
     Scripts =   %A_ScriptDir%\Scripts
     UI = %A_ScriptDir%\UI
 
-;Gui, Add, Picture, x0 y0 w1000 h1000 , %UI%\Background.jpg
 
 Gui, Add, Button, x50 y9 w80 h30, Logs
 Gui, Add, Button, x150 y9 w80 h30, DoStuff                                                              ; WIP
@@ -33,10 +31,6 @@ Gui, Add, CheckBox, x250 y9 w130 h30 vstartupvar gStartup, Launch at start up
     Gui, Add, Button, x12 y400 w80 h30 , Epic
     Gui, Add, GroupBox, x2 y388 w500 h50
 
-    Gui, Add, Text, x102 y456 w390 h20 vGOGPath,
-    Gui, Add, Button, x12 y450 w80 h30 , GOG
-    Gui, Add, GroupBox, x2 y438 w500 h50
-
     Gui, Add, Text, x102 y506 w390 h20 vRiotPath,
     Gui, Add, Button, x12 y500 w80 h30 , Riot
     Gui, Add, GroupBox, x2 y488 w500 h50
@@ -49,13 +43,6 @@ Gui, Add, CheckBox, x250 y9 w130 h30 vstartupvar gStartup, Launch at start up
     Gui, Add, Button, x12 y600 w80 h30 , Battlenet
     Gui, Add, GroupBox, x2 y588 w500 h50
 
-    Gui, Add, Text, x102 y656 w390 h20 vOriginPath,
-    Gui, Add, Button, x12 y650 w80 h30 , Origin
-    Gui, Add, GroupBox, x2 y638 w500 h50
-
-    Gui, Add, Text, x102 y706 w390 h20 vRyujinxPath, Please provide path
-    Gui, Add, Button, x12 y700 w80 h30 , Ryujinx
-    Gui, Add, GroupBox, x2 y688 w500 h50
 
 ; Retreive User Options ============================================================================
     UserOptions = %A_ScriptDir%\user_options.ini
@@ -105,15 +92,6 @@ Gui, Add, CheckBox, x250 y9 w130 h30 vstartupvar gStartup, Launch at start up
         Epic := StrReplace(Epic, "Epic = ", "")
         GuiControl,, EpicPath, %Epic%
 
-    ; GOG
-        Loop, read, %UserOptions% 
-        {
-            if InStr(A_LoopReadLine, "GOG")
-            GOG = %A_LoopReadLine%
-        }
-        GOG := StrReplace(GOG, "GOG = ", "")
-        GuiControl,, GOGPath, %GOG%
-
     ; Minecraft
         Loop, read, %UserOptions% 
         {
@@ -141,29 +119,7 @@ Gui, Add, CheckBox, x250 y9 w130 h30 vstartupvar gStartup, Launch at start up
         Battlenet := StrReplace(Battlenet, "Battlenet = ", "")
         GuiControl,, BattlenetPath, %Battlenet%
 
-    ; Origin
-        Loop, read, %UserOptions% 
-        {
-            if InStr(A_LoopReadLine, "Origin")
-            Origin = %A_LoopReadLine%
-        }
-        Origin := StrReplace(Origin, "Origin = ", "")
-        GuiControl,, OriginPath, WIP         %Origin%                                                         ; WIP
-
-    ; Ryujinx
-        Loop, read, %UserOptions% 
-        {
-            if InStr(A_LoopReadLine, "Ryujinx")
-            Ryujinx = %A_LoopReadLine%
-        }
-        Ryujinx := StrReplace(Ryujinx, "Ryujinx = ", "")
-        GuiControl,, RyujinxPath, WIP         %Ryujinx%                                                        ; WIP
-
-
-
-
 Gui, Show,, Time Tracker by Aonne. v%codeversion%
-; x1396 y282 h634 w525
 Return
 
 
@@ -214,22 +170,8 @@ Return
         Riot = %RiotPath%
     return
 
-    ButtonRyujinx:
-        FileSelectFile, RyujinxPath, 3, , Open a file, Text Documents (Ryujinx.exe)
-        RyujinxPath := StrReplace(RyujinxPath, "Ryujinx.exe", "Logs")
-        GuiControl,, RyujinxPath, WIP         %Ryujinx%                                                        ; WIP
-        Loop, read, %UserOptions%
-        {
-            InStr(A_LoopReadLine, "Ryujinx")
-            Ryujinx = %RyujinxPath%
-        }
-    return    
-
     ButtonEpic:
     Msgbox, %EpicPath%
-    return
-
-    ButtonGOG:
     return
 
     ButtonMinecraft:
