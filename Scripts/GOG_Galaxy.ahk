@@ -20,8 +20,7 @@
     {
         if InStr(A_LoopReadLine, "Launching process. Command")
         {
-            trim := SubStr(A_LoopReadLine, 1, InStr(A_LoopReadLine,"Process") - 1)
-            Fileappend, %trim%`n
+            Fileappend, %A_LoopReadLine%`n
         }
 
         if InStr(A_LoopReadLine, "Tracking game session for")
@@ -117,25 +116,56 @@
     FileDelete, %Temp%\GOG_Galaxy.txt
     FileAppend, %e%, %Temp%\GOG_Galaxy.txt
 
-; Replace  ============================================================================================
-    FileRead, Clean,                                                %Temp%\GOG_Galaxy.txt
+    FileRead, Keep,                                                 %Temp%\GOG_Galaxy.txt
+        i=0
+        e:=""
+        ToDelete=Renderer.exe    ;- skip this and next line
 
+
+        ;-------------------
+        Loop,parse,Keep,`n,`r
+        {
+        x:=a_loopfield
+        if (x="")
+        continue
+        if (i=1)
+        {
+        i=0
+        continue
+        } 
+        if x contains %ToDelete%
+        {
+        i=1
+        continue
+        }
+
+        e .= x . "`r`n"
+        }
+    
+    FileDelete, %Temp%\GOG_Galaxy.txt
+    FileAppend, %e%, %Temp%\GOG_Galaxy.txt
+; Replace  ============================================================================================
+    FileRead, Clean, %Temp%\GOG_Galaxy.txt
+
+    Clean := StrReplace(Clean, "Information", "")
+    Clean := StrReplace(Clean, "galaxy_client", "")
+    Clean := StrReplace(Clean, ": Tracking game session for '", "")
     Clean := StrReplace(Clean, "[", "")
     Clean := StrReplace(Clean, "]", "")
-    Clean := StrReplace(Clean, " Information", ", ")
-    Clean := StrReplace(Clean, "Asynchronous", "Started")
-    Clean := StrReplace(Clean, "galaxy_client: Tracking game session for ", ", ")
-    Clean := StrReplace(Clean, "galaxy_client: Launching process. Command: ", ", ")
+    Clean := StrReplace(Clean, "  (", ", ")
+    Clean := StrReplace(Clean, ")", "")
+    Clean := StrReplace(Clean, " Asynchronous", ", Asynchronous")
 
-FileDelete,                                                         %Temp%\GOG_Galaxy.txt
-Fileappend, %Clean%,                                                %Temp%\GOG_Galaxy.txt
 
-;Sort==================================================================================================
-    FileRead, Clean,                                                %Temp%\GOG_Galaxy.txt
+FileDelete, %Temp%\GOG_galaxy.txt
+FileAppend, %Clean%, %Temp%\GOG_galaxy.txt
+
+;Sort===================================================================================================
+    FileRead, Clean, %Temp%\GOG_Galaxy.txt
     Sort, Clean, u
 
-    FileDelete,                                                     %Temp%\GOG_Galaxy.txt
-    FileAppend, %Clean%,                                            %Temp%\GOG_Galaxy.txt
+    FileDelete, %Temp%\GOG_Galaxy.txt
+    FileAppend, %Clean%, %Temp%\GOG_Galaxy.txt
 
-;Delete ===============================================================================================
+;Delete ================================================================================================
     FileDelete, %Temp%\galaxy_temp.txt
