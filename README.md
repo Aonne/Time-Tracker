@@ -39,9 +39,6 @@ Also only people with a NVIDIA GPU will be able to **fully** use it, as the NVID
 * What do you do with my data?
   * Absolutely nothing! Time Tracker doesn't share anything anywhere, in fact it can be use without an internet connection.
 
-* How much ressources does it use?
-  * Close to nothing, it will depends of the speed of your storage but after testing it on an USB stick, everything is done in less than 10sec. Nothing will be running in the background after that.
-
 * Does it work on games without launcher?
   * Only ```Nvidia``` should log that. Note that for older games, it won't log the name but should still know when it was opened and closed. As for *very* light games hhhhhh it's a gamble, some may work, some may not. I am always trying to find new ways to improve this project.
 
