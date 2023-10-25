@@ -1,4 +1,4 @@
-codeversion := "0.25"
+codeversion := "0.2.1"
 ;@Ahk2Exe-Let U_version = %A_PriorLine~U)^(.+"){1}(.+)".*$~$2%
 ; Path ==============================================================================================
     Scripts =   %A_ScriptDir%\Scripts
