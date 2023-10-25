@@ -26,7 +26,7 @@ Also only people with a NVIDIA GPU will be able to **fully** use it, as the NVID
     - Check "Launch at start up" to not miss any log, as some launchers will reset theirs at every Windows startup. This will create a simple shortcut of *Time Tracker* in ```C:\Users\%A_UserName%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup```.
 6) Read the logs:
     - Logs will be in the ```Temp``` folder. For now, almost every launchers has a different syntax, something that I'm trying to correct. ```Nvidia.txt``` should have 90% of the logs, it just doesnt registers the name of most old games. That's why you'll need to look at the game's launcher put the piece together.
-7) Fixes:
+Optional) Fixes:
     - Fixes are a work in progress to further clean the log files. This is done after to not add computing time to *Time Tracker*. It consists of three parts:
         - Part 1 : Change every dates to a single format.
         - Part 2 : Flag missing lines. Due to launchers or *Time Tracker*, some entries of gaming sessions won't be logged. This step should help you notice those missing entries and manually correct them, using other logs.
