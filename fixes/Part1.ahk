@@ -13,7 +13,7 @@ FileCreateDir, %Temp01%
 FileCreateDir, %Temp01%
 
 ;=
-Gui, Add, Progress, w400 h30 vMyProgress Range0-6,0
+Gui, Add, Progress, w400 h30 vMyProgress Range0-7,0
 Gui, Add, Text, w200 vName,
 GuiControl,, MyProgress, 0
 
@@ -67,7 +67,7 @@ GuiControl,, MyProgress, +1
 GuiControl,, Name, Nvidia
 GuiControl,, MyProgress, +1
     ; Nvidia
-    FileDelete, %Temp01%\Nvidia.txt
+    FileDelete, %Temp01%\Nvidia.log
     Loop, read, %Temp%\Nvidia.log
     {
 
@@ -108,8 +108,8 @@ GuiControl,, MyProgress, +1
 GuiControl,, Name, Steam
 GuiControl,, MyProgress, +1
     ; Steam
-    FileDelete, %Temp01%\Steam.txt
-    Loop, read, %Temp%\Steam.txt
+    FileDelete, %Temp01%\Steam.log
+    Loop, read, %Temp%\Steam.log
     {
 
         str = %A_LoopReadLine%
@@ -127,6 +127,31 @@ GuiControl,, MyProgress, +1
     ; Minecraft
     FileDelete, %Temp01%\Minecraft.txt
     FileCopy, %Temp%\Minecraft.*, %Temp01%\Minecraft.log
+
+GuiControl,, Name, Playnite
+GuiControl,, MyProgress, +1
+    ; Playnite
+    FileDelete, %Temp01%\Playnite.txt
+    Loop, read, %Temp%\Playnite.log
+    {
+
+        str = %A_LoopReadLine%
+        StringLeft, virgulel, str, 10
+        StringLen, lengv, str
+        lengv -= 10
+        StringRight, virguler, str, %lengv%
+        Virgule = %virgulel%,%virguler%
+
+        StringLeft, microsecondesl, virgule, 20
+        StringLen, lengm, virgule
+        lengm -= 24
+        StringRight, microsecondesr, virgule, %lengm%
+
+        Content = %microsecondesl%%microsecondesr%
+
+        FileAppend, %content%`n, %Temp01%\Playnite.log        
+
+    }
 
 GuiControl,, MyProgress, 100
 Progress, off

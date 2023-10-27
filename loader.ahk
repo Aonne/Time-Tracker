@@ -13,7 +13,6 @@
         FileAppend, %UserOptions%, %User%
         Msgbox, Hey, looks like it's your first time using this program!`nPlease register the path of launchers that have their box's empty, dont mind the others.
         RunWait, %A_ScriptDir%\setup.ahk
-        ;FileCreateShortcut, %A_ScriptDir%\Time Tracker.ahk, %Startup%\Time Tracker by Aonne.lnk
     }
 
 IniRead, version, %Options%, Options, version

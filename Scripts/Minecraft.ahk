@@ -17,6 +17,7 @@
 
 
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Latest not working, idk
+ ; it works? you know what, dont know dont care
 
 
     ;move .gz Prism

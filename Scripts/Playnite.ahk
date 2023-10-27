@@ -38,14 +38,14 @@
     Clean := StrReplace(Clean, " stopped ", ", Stopped, ")
     Clean := StrReplace(Clean, "|INFO |GamesEditor:Game", ",")
 
-FileAppend, %Clean%, %Temp%\playnite.log
+FileAppend, %Clean%, %Temp%\Playnite.log
 
 ; Sort =================================================================================================
-    FileRead, Clean, %Temp%\playnite.log
+    FileRead, Clean, %Temp%\Playnite.log
     Sort, Clean, u
 
-    FileDelete, %Temp%\playnite.log
-    FileAppend, %Clean%, %Temp%\playnite.log
+    FileDelete, %Temp%\Playnite.log
+    FileAppend, %Clean%, %Temp%\Playnite.log
 
 ; Delete ===============================================================================================
     FileDelete, %Temp%\*.temp
