@@ -1,8 +1,7 @@
 #SingleInstance, Force
 
 
-;IniRead, codeversion, %A_ScriptDir%\options.ini, Options, version
-codeversion = %A_AhkVersion% ;im lazy
+IniRead, codeversion, %A_ScriptDir%\options.ini, Options, version
 Gui, destroy
 
 ; Path ============================================================================================
