@@ -280,7 +280,6 @@ Return
             Playnite = %PlaynitePath%
         }
     return
-
     ;Reset
     ;lazy way for now
     NvidiaReset:       
