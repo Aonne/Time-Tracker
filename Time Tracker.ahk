@@ -282,51 +282,73 @@ Return
     return
 
     ;Reset
-
-    NvidiaReset:
-
+    ;lazy way for now
+    NvidiaReset:       
+        IniRead, Nvidia, %UserOptions%, Path, Nvidia
+        GuiControl,, NvidiaPath, %Nvidia%
+        if not FileExist(Nvidia)
+            Guicontrol,, NvidiaPath, NOT FOUND
     return
-
-    SteamReset:
-
+    SteamReset:      
+        IniRead, Steam, %UserOptions%, Path, Steam
+        GuiControl,, SteamPath, %Steam%
+        if not FileExist(Steam)
+            Guicontrol,, SteamPath, NOT FOUND
     return
-    
     EpicReset:
-
+        IniRead, Epic, %UserOptions%, Path, Epic
+        GuiControl,, EpicPath, %Epic%
+        if not FileExist(Epic)
+            Guicontrol,, EpicPath, NOT FOUND
     return
-    
     GOGReset:
-
+        IniRead, GOG, %UserOptions%, Path, GOG
+        GuiControl,, GOGPath, %GOG%
+        if not FileExist(GOG)
+            Guicontrol,, GOGPath, NOT FOUND
     return
-    
-    RiotReset:
-
-    return
-    
     MinecraftReset:
-
+        IniRead, Minecraft, %UserOptions%, Path, Minecraft
+        GuiControl,, MinecraftPath, %Minecraft%
+        if not FileExist(Minecraft)
+            Guicontrol,, MinecraftPath, NOT FOUND
     return
-    
+    RiotReset:
+        IniRead, Riot, %UserOptions%, Path, Riot
+        GuiControl,, RiotPath, %Riot%
+        if not FileExist(Riot)
+            Guicontrol,, RiotPath, NOT FOUND
+    return
     BattlenetReset:
-
+        IniRead, Battlenet, %UserOptions%, Path, Battlenet
+        GuiControl,, BattlenetPath, %Battlenet%
+        if not FileExist(Battlenet)
+            Guicontrol,, BattlenetPath, NOT FOUND
     return
-    
-    EAdesktopReset:
-
+    EADesktopReset:
+        IniRead, EADesktop, %UserOptions%, Path, EADesktop
+        GuiControl,, EADesktopPath, %EADesktop%
+        if not FileExist(EADesktop)
+            Guicontrol,, EADesktopPath, NOT FOUND        
     return
-
-    MultiMCReset:
-
+    MultiMcReset:
+        IniRead, MultiMC, %UserOptions%, Path, MultiMC
+        GuiControl,, MultiMCPath, %MultiMC%
+        if not FileExist(MultiMC)
+            Guicontrol,, MultiMCPath, NOT FOUND
     return
-
     PrismReset:
-
+        IniRead, Prism, %UserOptions%, Path, Prism
+        GuiControl,, PrismPath, %Prism%
+        if not FileExist(Prism)
+            Guicontrol,, PrismPath, NOT FOUND
     return
-
     PlayniteReset:
-
+        IniRead, Playnite, %UserOptions%, Path, Playnite
+        GuiControl,, PlaynitePath, %Playnite%
+        if not FileExist(Playnite)
+            Guicontrol,, PlaynitePath, NOT FOUND
     return
-    
 ; Save User Options ===============================================================================
 
 GuiClose:
