@@ -71,6 +71,11 @@ Gui, Add, GroupBox, x502 y38 w100 h550
     Gui, Add, Button, x12 y550 w80 h30 , Playnite
     Gui, Add, GroupBox, x2 y538 w600 h50
 
+    Gui, Add, Text, x102 y606 w390 h20 vHumbleAppPath,
+    Gui, Add, Button, x512 y600 w80 h30 gHumbleAppReset, Reset
+    Gui, Add, Button, x12 y600 w80 h30 , HumbleApp
+    Gui, Add, GroupBox, x2 y588 w600 h50
+
 ; Retreive User Options ============================================================================
     UserOptions = %A_ScriptDir%\user_options.ini
 
@@ -152,6 +157,12 @@ Gui, Add, GroupBox, x502 y38 w100 h550
         GuiControl,, PlaynitePath, %Playnite%
         if not FileExist(Playnite)
             Guicontrol,, PlaynitePath, NOT FOUND
+
+    ; HumbleApp
+        IniRead, HumbleApp, %UserOptions%, Path, HumbleApp
+        GuiControl,, HumbleAppPath, %HumbleApp%
+        if not FileExist(HumbleApp)
+            Guicontrol,, HumbleAppPath, NOT FOUND
 
     ; first time user
         eh = %A_ScriptDir%\Temp
@@ -279,6 +290,11 @@ Return
             Playnite = %PlaynitePath%
         }
     return
+
+    ButtonHumbleApp:
+        Run, %HumbleApp%
+    return
+
     ;Reset
     ;lazy way for now
     NvidiaReset:       
@@ -347,6 +363,13 @@ Return
         if not FileExist(Playnite)
             Guicontrol,, PlaynitePath, NOT FOUND
     return
+
+    HumbleAppReset:
+        IniRead, HumbleApp, %UserOptions%, Path, HumbleApp
+        GuiControl,, HumbleAppPath, %HumbleApp%
+        if not FileExist(HumbleApp)
+            Guicontrol,, HumbleAppPath, NOT FOUND
+    return
 ; Save User Options ===============================================================================
 
 GuiClose:
@@ -363,6 +386,7 @@ GuiClose:
     iniWrite, %MultiMC%,    %UserOptions%, Path, MultiMC
     iniWrite, %Prism%,      %UserOptions%, Path, Prism
     iniWrite, %Playnite%,   %UserOptions%, Path, Playnite
+    iniWrite, %HumbleApp%,  %UserOptions%, Path, HumbleApp
 
 
 

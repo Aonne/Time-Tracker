@@ -146,6 +146,10 @@ Loop, %OutputTemp%\*.log
 
     Clean := StrReplace(Clean, "[", "")
     Clean := StrReplace(Clean, "]", ",")
+    Clean := StrReplace(Clean, "Loading Minecraft", "Started,")
+    Clean := StrReplace(Clean, "main/INFO,: ", "")
+    Clean := StrReplace(Clean, "Render thread/INFO,: ", "")
+    Clean := StrReplace(Clean, "Stopping!", "Exited,")
 
     Fileappend, %Clean%, %Temp%\Minecraft.log
 
