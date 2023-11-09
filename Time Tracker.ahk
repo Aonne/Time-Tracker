@@ -13,69 +13,60 @@ Gui, destroy
 Gui, Add, Button, x50 y9 w80 h30, Logs
 Gui, Add, Button, x150 y9 w80 h30, DoStuff                                                              ; WIP
 Gui, Add, CheckBox, x250 y9 w130 h30 vstartupvar gStartup, Launch at start up
-Gui, Add, GroupBox, x502 y38 w100 h550
 
 ; Featured =========================================================================================
     Gui, Add, Text, x102 y56 w390 h20 vNvidiaPath,
     Gui, Add, Button, x12 y50 w80 h30 , Nvidia
-    Gui, Add, Button, x512 y50 w80 h30 gNvidiaReset, Reset
-    Gui, Add, GroupBox, x2 y38 w600 h50
+    Gui, Add, GroupBox, x2 y38 w500 h50
 
     Gui, Add, Text, x102 y106 w390 h20 vSteamPath,
-    Gui, Add, Button, x512 y100 w80 h30 gSteamReset, Reset
     Gui, Add, Button, x12 y100 w80 h30 , Steam
-    Gui, Add, GroupBox, x2 y88 w600 h50
+    Gui, Add, GroupBox, x2 y88 w500 h50
 
     Gui, Add, Text, x102 y156 w390 h20 vEpicPath,
-    Gui, Add, Button, x512 y150 w80 h30 gepicReset, Reset
     Gui, Add, Button, x12 y150 w80 h30 , Epic
-    Gui, Add, GroupBox, x2 y138 w600 h50
+    Gui, Add, GroupBox, x2 y138 w500 h50
 
     Gui, Add, Text, x102 y206 w390 h20 vGOGPath,
-    Gui, Add, Button, x512 y200 w80 h30 gGOGReset, Reset
     Gui, Add, Button, x12 y200 w80 h30 , GOG
-    Gui, Add, GroupBox, x2 y188 w600 h50
+    Gui, Add, GroupBox, x2 y188 w500 h50
 
     Gui, Add, Text, x102 y256 w390 h20 vRiotPath,
-    Gui, Add, Button, x512 y250 w80 h30 gRiotReset, Reset
     Gui, Add, Button, x12 y250 w80 h30 , Riot
-    Gui, Add, GroupBox, x2 y238 w600 h50
+    Gui, Add, GroupBox, x2 y238 w500 h50
 
     Gui, Add, Text, x102 y306 w390 h20 vMinecraftPath,
-    Gui, Add, Button, x512 y300 w80 h30 gMinecraftReset, Reset
     Gui, Add, Button, x12 y300 w80 h30 , Minecraft
-    Gui, Add, GroupBox, x2 y288 w600 h50
+    Gui, Add, GroupBox, x2 y288 w500 h50
 
     Gui, Add, Text, x102 y356 w390 h20 vBattlenetPath,
-    Gui, Add, Button, x512 y350 w80 h30 gBattlenetReset, Reset
     Gui, Add, Button, x12 y350 w80 h30 , Battlenet
-    Gui, Add, GroupBox, x2 y338 w600 h50
+    Gui, Add, GroupBox, x2 y338 w500 h50
 
     Gui, Add, Text, x102 y406 w390 h20 vEADesktopPath,
-    Gui, Add, Button, x512 y400 w80 h30 gEADesktopReset, Reset
     Gui, Add, Button, x12 y400 w80 h30 , EADesktop
-    Gui, Add, GroupBox, x2 y388 w600 h50
+    Gui, Add, GroupBox, x2 y388 w500 h50
 
     Gui, Add, Text, x102 y456 w390 h20 vMultiMCPath,
-    Gui, Add, Button, x512 y450 w80 h30 gMultiMCReset, Reset
     Gui, Add, Button, x12 y450 w80 h30 , MultiMC
-    Gui, Add, GroupBox, x2 y438 w600 h50
+    Gui, Add, GroupBox, x2 y438 w500 h50
 
     Gui, Add, Text, x102 y506 w390 h20 vPrismPath,
-    Gui, Add, Button, x512 y500 w80 h30 gPrismReset, Reset
     Gui, Add, Button, x12 y500 w80 h30 , Prism
-    Gui, Add, GroupBox, x2 y488 w600 h50
+    Gui, Add, GroupBox, x2 y488 w500 h50
 
     Gui, Add, Text, x102 y556 w390 h20 vPlaynitePath,
-    Gui, Add, Button, x512 y550 w80 h30 gPlayniteReset, Reset
     Gui, Add, Button, x12 y550 w80 h30 , Playnite
-    Gui, Add, GroupBox, x2 y538 w600 h50
+    Gui, Add, GroupBox, x2 y538 w500 h50
 /*
     Gui, Add, Text, x102 y606 w390 h20 vHumbleAppPath,
-    Gui, Add, Button, x512 y600 w80 h30 gHumbleAppReset, Reset
     Gui, Add, Button, x12 y600 w80 h30 , HumbleApp
-    Gui, Add, GroupBox, x2 y588 w600 h50
+    Gui, Add, GroupBox, x2 y588 w500 h50
 */
+    Gui, Add, Text, x102 y606 w390 h20 vUbisoftPath,
+    Gui, Add, Button, x12 y600 w80 h30 , Ubisoft
+    Gui, Add, GroupBox, x2 y588 w500 h50
+
 ; Retreive User Options ============================================================================
     UserOptions = %A_ScriptDir%\user_options.ini
 
@@ -107,8 +98,6 @@ Gui, Add, GroupBox, x502 y38 w100 h550
     ; Epic
         IniRead, Epic, %UserOptions%, Path, Epic
         GuiControl,, EpicPath, %Epic%
-        if not FileExist(Epic)
-            Guicontrol,, EpicPath, NOT FOUND
 
     ; GOG
         IniRead, GOG, %UserOptions%, Path, GOG
@@ -164,6 +153,13 @@ Gui, Add, GroupBox, x502 y38 w100 h550
         if not FileExist(HumbleApp)
             Guicontrol,, HumbleAppPath, NOT FOUND
 */
+    ; Ubisoft
+        IniRead, Ubisoft, %UserOptions%, Path, Ubisoft
+        GuiControl,, UbisoftPath, %Ubisoft%
+        if not FileExist(Ubisoft)
+            Guicontrol,, UbisoftPath, NOT FOUND
+
+
     ; first time user
         eh = %A_ScriptDir%\Temp
         if not fileExist(eh)
@@ -200,27 +196,24 @@ Return
         return
 
     ButtonSteam:
-        if FileExist(Steam)
-            Run, %Steam%
-        Else
+        FileSelectFile, SteamPath, 3, , Steam.exe
+        if FileExist(SteamPath)
         {
-            FileSelectFile, SteamPath, 3, , Open a file, Text Documents (Steam.exe)
             SteamPath := StrReplace(SteamPath, "steam.exe", "logs")
             GuiControl,, SteamPath, %SteamPath%
-            Steam = %SteamPath%            
+            Steam = %SteamPath%      
+            iniWrite, %Steam%, %UserOptions%, Path, Steam                    
         }
-
     return
 
     ButtonRiot:
-        if FileExist(Riot)
-            Run, %Riot%
-        Else
+        FileSelectFile, RiotPath, 3, , Open a file, RiotClientServices.exe
+        if FileExist(RiotPath)
         {
-            FileSelectFile, RiotPath, 3, , Open a file, Text Documents (RiotClientServices.exe)
             RiotPath := StrReplace(RiotPath, "RiotClientServices.exe", "")
             GuiControl,, RiotPath, %RiotPath%
-            Riot = %RiotPath%
+            Riot = %RiotPath%      
+            iniWrite, %Riot%, %UserOptions%, Path, Riot      
         }
     return
 
@@ -237,13 +230,12 @@ Return
     return
 
     ButtonBattlenet:
-        if FileExist(Battlenet)
-            Run, %Battlenet%
-        else
+        FileSelectFile, BattlenetPath, 3, , Open a file, Battlenet.exe
+        if FileExist(BattlenetPath)
         {
-            FileSelectFile, BattlenetPath, 3, , Open a file, Battlenet.exe
             Guicontrol,, BattlenetPath, %BattlenetPath%
-            Battlenet = %BattlenetPath%           
+            Battlenet = %BattlenetPath%       
+            iniWrite, %Battlenet%, %UserOptions%, Path, Battlenet       
         }
     return
 
@@ -256,38 +248,43 @@ Return
     return
 
     ButtonMultiMC:
-        if FileExist(MultiMC)
-            Run, %MultiMC%
-        Else
+        FileSelectFile, MultiMCPath, 3, , Open a file, MultiMC.exe
+        IF FileExist(MultiMCPath)
         {
-            FileSelectFile, MultiMCPath, 3, , Open a file, Text Documents (MultiMC.exe)
             MultiMCPath := StrReplace(MultiMCPath, "MultiMC.exe", "instances")
             GuiControl,, MultiMCPath, %MultiMCPath%
-            MultiMC = %MultiMCPath%
+            MultiMC = %MultiMCPath%            
         }
     return
 
     ButtonPrism:
-        if FileExist(Prism)
-            Run, %Prism%
-        Else
+        FileSelectFile, PrismPath, 3, , Open a file, prismlauncher.exe
+        if FileExist(PrismPath)
         {
-            FileSelectFile, PrismPath, 3, , Open a file, Text Documents (prismlauncher.exe)
             PrismPath := StrReplace(PrismPath, "prismlauncher.exe", "instances")
             GuiControl,, PrismPath, %PrismPath%
-            Prism = %PrismPath%
+            Prism = %PrismPath%            
         }
     return
 
     ButtonPlaynite:
-        if FileExist(Playnite)
-            Run, %Playnite%
-        Else
+        FileSelectFile, PlaynitePath, 3, , Open a file, Playnite.DesktopApp.exe
+        IF FileExist(PlaynitePath)
         {
-            FileSelectFile, PlaynitePath, 3, , Open a file, Text Documents (Playnite.DesktopApp.exe)
             PlaynitePath := StrReplace(PlaynitePath, "\Playnite.DesktopApp.exe", "")
             GuiControl,, PlaynitePath, %PlaynitePath%
-            Playnite = %PlaynitePath%
+            Playnite = %PlaynitePath%            
+        }
+    return
+
+    ButtonUbisoft:
+        FileSelectFile, UbisoftPath, 3, , Open a file, UbisoftConnect.exe
+        if FileExist(UbisoftPath)
+        {
+            UbisoftPath := StrReplace(UbisoftPath, "\UbisoftConnect.exe", "\logs")
+            GuiControl,, UbisoftPath, %UbisoftPath%
+            Ubisoft = %UbisoftPath%        
+            iniWrite, %Ubisoft%, %UserOptions%, Path, Ubisoft
         }
     return
 /*
@@ -295,104 +292,8 @@ Return
         Run, %HumbleApp%
     return
 */
-    ;Reset
-    ;lazy way for now
-    NvidiaReset:       
-        IniRead, Nvidia, %UserOptions%, Path, Nvidia
-        GuiControl,, NvidiaPath, %Nvidia%
-        if not FileExist(Nvidia)
-            Guicontrol,, NvidiaPath, NOT FOUND
-    return
-    SteamReset:      
-        IniRead, Steam, %UserOptions%, Path, Steam
-        GuiControl,, SteamPath, %Steam%
-        if not FileExist(Steam)
-            Guicontrol,, SteamPath, NOT FOUND
-    return
-    EpicReset:
-        IniRead, Epic, %UserOptions%, Path, Epic
-        GuiControl,, EpicPath, %Epic%
-        if not FileExist(Epic)
-            Guicontrol,, EpicPath, NOT FOUND
-    return
-    GOGReset:
-        IniRead, GOG, %UserOptions%, Path, GOG
-        GuiControl,, GOGPath, %GOG%
-        if not FileExist(GOG)
-            Guicontrol,, GOGPath, NOT FOUND
-    return
-    MinecraftReset:
-        IniRead, Minecraft, %UserOptions%, Path, Minecraft
-        GuiControl,, MinecraftPath, %Minecraft%
-        if not FileExist(Minecraft)
-            Guicontrol,, MinecraftPath, NOT FOUND
-    return
-    RiotReset:
-        IniRead, Riot, %UserOptions%, Path, Riot
-        GuiControl,, RiotPath, %Riot%
-        if not FileExist(Riot)
-            Guicontrol,, RiotPath, NOT FOUND
-    return
-    BattlenetReset:
-        IniRead, Battlenet, %UserOptions%, Path, Battlenet
-        GuiControl,, BattlenetPath, %Battlenet%
-        if not FileExist(Battlenet)
-            Guicontrol,, BattlenetPath, NOT FOUND
-    return
-    EADesktopReset:
-        IniRead, EADesktop, %UserOptions%, Path, EADesktop
-        GuiControl,, EADesktopPath, %EADesktop%
-        if not FileExist(EADesktop)
-            Guicontrol,, EADesktopPath, NOT FOUND        
-    return
-    MultiMcReset:
-        IniRead, MultiMC, %UserOptions%, Path, MultiMC
-        GuiControl,, MultiMCPath, %MultiMC%
-        if not FileExist(MultiMC)
-            Guicontrol,, MultiMCPath, NOT FOUND
-    return
-    PrismReset:
-        IniRead, Prism, %UserOptions%, Path, Prism
-        GuiControl,, PrismPath, %Prism%
-        if not FileExist(Prism)
-            Guicontrol,, PrismPath, NOT FOUND
-    return
-    PlayniteReset:
-        IniRead, Playnite, %UserOptions%, Path, Playnite
-        GuiControl,, PlaynitePath, %Playnite%
-        if not FileExist(Playnite)
-            Guicontrol,, PlaynitePath, NOT FOUND
-    return
-/*
-    HumbleAppReset:
-        IniRead, HumbleApp, %UserOptions%, Path, HumbleApp
-        GuiControl,, HumbleAppPath, %HumbleApp%
-        if not FileExist(HumbleApp)
-            Guicontrol,, HumbleAppPath, NOT FOUND
-    return
-*/
-; Save User Options ===============================================================================
-
-GuiClose:
-; Launchers
-    iniWrite, %Steam%,      %UserOptions%, Path, Steam
-    iniWrite, %Epic%,       %UserOptions%, Path, Epic
-    iniWrite, %GOG%,        %UserOptions%, Path, GOG
-    iniWrite, %Minecraft%,  %UserOptions%, Path, Minecraft
-    iniWrite, %Nvidia%,     %UserOptions%, Path, Nvidia
-    iniWrite, %Battlenet%,  %UserOptions%, Path, Battlenet
-    iniWrite, %Ryujinx%,    %UserOptions%, Path, Ryujinx
-    iniWrite, %Riot%,       %UserOptions%, Path, Riot
-    iniWrite, %EADesktop%,  %UserOptions%, Path, EADesktop
-    iniWrite, %MultiMC%,    %UserOptions%, Path, MultiMC
-    iniWrite, %Prism%,      %UserOptions%, Path, Prism
-    iniWrite, %Playnite%,   %UserOptions%, Path, Playnite
-    ;iniWrite, %HumbleApp%,  %UserOptions%, Path, HumbleApp
-
-
-
-
 
 ; End ===========================================================================================
+GuiClose:
 ExitApp
 return

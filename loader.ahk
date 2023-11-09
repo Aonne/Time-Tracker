@@ -20,11 +20,7 @@ WinWaitClose, Time Tracker by Aonne %version% ; Let setup close first
             
 ; Run Scripts =======================================================================================
     Loop %Scripts%\*.ahk
-    Run %A_LoopFileFullPath% 
-
-
-
-
+    RunWait %A_LoopFileFullPath% 
 
 ExitApp
 return

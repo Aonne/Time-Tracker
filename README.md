@@ -42,7 +42,7 @@ Also only people with a NVIDIA GPU will be able to **fully** use it, as the NVID
   * As for now : Steam, Epic, GOG, Minecraft, Battlenet, EA Desktop, MultiMC, Prism, Playnite and Riot (and Nvidia). If you want more, please open an [issue](https://github.com/Aonne/Time-Tracker/issues/new) with the tag ```launcher request```.
 
 * It doesnt work!
-  * Check if the paths lead to something, every one of them should lead to a folder with at least one *.log* file in it (except Riot that is different). If paths are not right, use the Reset button, and if it is still not right, you can manually change the path in ````user_options.ini````.
+  * Check if the paths lead to something, every one of them should lead to a folder with at least one *.log* file in it (except Riot that is different). If paths are not right, you can manually change the paths in ````user_options.ini````.
 
 * What do you do with my data?
   * Absolutely nothing! Time Tracker doesn't share anything anywhere, in fact it can entirely be used without an internet connection.
