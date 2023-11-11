@@ -2,6 +2,8 @@
 SendMode Input
 SetWorkingDir, %A_ScriptDir%
 
+;https://github.com/Haoose/UPLAY_GAME_ID
+
 ; Retrieve Path ========================================================================================
     Path = %A_ScriptDir%
     Path := StrReplace(Path, "Scripts", "")

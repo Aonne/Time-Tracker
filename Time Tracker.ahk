@@ -295,5 +295,6 @@ Return
 
 ; End ===========================================================================================
 GuiClose:
+    iniWrite, %Startupis%, %UserOptions%, Options, Startup
 ExitApp
 return
