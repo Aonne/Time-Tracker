@@ -29,6 +29,7 @@
                 FileGetTime, LatestTime, %A_LoopFileFullPath%, M
                 FormatTime, LatestTime, %LatestTime%, yyyy-MM-dd
                 blabla = %Temp%\Minecraft\%LatestTime%.log
+                TEMPNUMBER +=1
                 if FileExist(blabla)
                     Latesttime = %LatestTime%TEMPNUMBER
                 FileCopy, %A_LoopFileFullPath%, %Temp%\Minecraft\%LatestTime%.log, 1
@@ -50,6 +51,7 @@
                 FileGetTime, LatestTime, %A_LoopFileFullPath%, M
                 FormatTime, LatestTime, %LatestTime%, yyyy-MM-dd
                 blabla = %Temp%\Minecraft\%LatestTime%.log
+                TEMPNUMBER +=1
                 if FileExist(blabla)
                     Latesttime = %LatestTime%TEMPNUMBER
                 FileCopy, %A_LoopFileFullPath%, %Temp%\Minecraft\%LatestTime%.log, 1
@@ -70,6 +72,7 @@
                 FileGetTime, LatestTime, %A_LoopFileFullPath%, M
                 FormatTime, LatestTime, %LatestTime%, yyyy-MM-dd
                 blabla = %Temp%\Minecraft\%LatestTime%.log
+                TEMPNUMBER +=1
                 if FileExist(blabla)
                     Latesttime = %LatestTime%TEMPNUMBER                
                 FileCopy, %A_LoopFileFullPath%, %Temp%\Minecraft\%LatestTime%.log, 1
@@ -90,6 +93,7 @@
                 FileGetTime, LatestTime, %A_LoopFileFullPath%, M
                 FormatTime, LatestTime, %LatestTime%, yyyy-MM-dd
                 blabla = %Temp%\Minecraft\%LatestTime%.log
+                TEMPNUMBER +=1
                 if FileExist(blabla)
                     Latesttime = %LatestTime%TEMPNUMBER                
                 FileCopy, %A_LoopFileFullPath%, %Temp%\Minecraft\%LatestTime%.log, 1
