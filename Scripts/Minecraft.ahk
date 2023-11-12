@@ -15,11 +15,6 @@
     FileCreateDir, %Temp%
     FileCreateDir, %Temp%\Minecraft
 
-
- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Latest not working, idk
- ; it works? you know what, dont know dont care
-
-
     ;move .gz Prism
     Loop, %Prism%\*.* ,0,1
     {
@@ -33,8 +28,12 @@
             {
                 FileGetTime, LatestTime, %A_LoopFileFullPath%, M
                 FormatTime, LatestTime, %LatestTime%, yyyy-MM-dd
+                blabla = %Temp%\Minecraft\%LatestTime%.log
+                if FileExist(blabla)
+                    Latesttime = %LatestTime%TEMPNUMBER
                 FileCopy, %A_LoopFileFullPath%, %Temp%\Minecraft\%LatestTime%.log, 1
             }
+            
     }
 
     ;move .gz MultiMC
@@ -50,6 +49,9 @@
             {
                 FileGetTime, LatestTime, %A_LoopFileFullPath%, M
                 FormatTime, LatestTime, %LatestTime%, yyyy-MM-dd
+                blabla = %Temp%\Minecraft\%LatestTime%.log
+                if FileExist(blabla)
+                    Latesttime = %LatestTime%TEMPNUMBER
                 FileCopy, %A_LoopFileFullPath%, %Temp%\Minecraft\%LatestTime%.log, 1
             }
     }
@@ -67,6 +69,9 @@
             {
                 FileGetTime, LatestTime, %A_LoopFileFullPath%, M
                 FormatTime, LatestTime, %LatestTime%, yyyy-MM-dd
+                blabla = %Temp%\Minecraft\%LatestTime%.log
+                if FileExist(blabla)
+                    Latesttime = %LatestTime%TEMPNUMBER                
                 FileCopy, %A_LoopFileFullPath%, %Temp%\Minecraft\%LatestTime%.log, 1
             }
     }
@@ -84,10 +89,12 @@
             {
                 FileGetTime, LatestTime, %A_LoopFileFullPath%, M
                 FormatTime, LatestTime, %LatestTime%, yyyy-MM-dd
+                blabla = %Temp%\Minecraft\%LatestTime%.log
+                if FileExist(blabla)
+                    Latesttime = %LatestTime%TEMPNUMBER                
                 FileCopy, %A_LoopFileFullPath%, %Temp%\Minecraft\%LatestTime%.log, 1
             }
     }
-
 
     ;extract .gz
     OutputTemp := """" . Temp . "\Minecraft\"""
@@ -140,7 +147,6 @@ Loop, %OutputTemp%\*.log
         FileRead, afileContents, %A_LoopFileFullPath%
         Fileappend, %afileContents%, %Temp%\Minecraft.temp
     }
-
 ;Replace  ================================================================================================
     FileRead, Clean, %Temp%\Minecraft.temp
 
@@ -150,9 +156,9 @@ Loop, %OutputTemp%\*.log
     Clean := StrReplace(Clean, "main/INFO,: ", "")
     Clean := StrReplace(Clean, "Render thread/INFO,: ", "")
     Clean := StrReplace(Clean, "Stopping!", "Exited,")
+    Clean := StrReplace(Clean, "TEMPNUMBER", "")
 
     Fileappend, %Clean%, %Temp%\Minecraft.log
-
 ;Sort====================================================================================================
     FileRead, Clean, %Temp%\Minecraft.log
     Sort, Clean, u
