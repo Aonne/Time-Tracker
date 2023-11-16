@@ -9,7 +9,6 @@ The data still needs some cleaning, manually and later, automatically, but shoul
 ## Requirements
 
 Windows 10 or 11, doesnt work on Linux.
-Also only people with a NVIDIA GPU will be able to **fully** use it, as the NVIDIA scripts can track most of the games by itself.
 
 
 ## How to use
