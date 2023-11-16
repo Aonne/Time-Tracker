@@ -1,7 +1,8 @@
 # Time Tracker
 
 Time Tracker is a regrouping of few scripts that will retrieve the log files of featured launchers, clean them a bit to let you see what game you played and when did you play it.
-**It doest not log anything itself.**
+
+**It does not log anything itself.**
 
 As for now, it is very much an alpha and will require a lot of interpretation.
 The data still needs some cleaning, manually and later, automatically, but should be usable for graphs.
