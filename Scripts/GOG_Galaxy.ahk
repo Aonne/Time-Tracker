@@ -13,7 +13,7 @@
 {
     FileRead, acontent, %A_LoopFileFullPath%
     Fileappend, %acontent%, %Temp%\galaxy.temp
-}
+} 
 
 ; Clean ================================================================================================
     Loop, read, %Temp%\galaxy.temp,                             %Temp%\GOG_Galaxy1.temp

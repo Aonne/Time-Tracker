@@ -10,7 +10,7 @@ SetWorkingDir, %A_ScriptDir%
 
     IniRead, Ubisoft_Path, %Path%\user_options.ini, Path, Ubisoft
     Temp = %Path%\Temp
-
+ 
 ; Retrieve Files ========================================================================================
     FileCopy, %Ubisoft_Path%\launcher_log.txt, %Temp%\ubisoft.temp
 

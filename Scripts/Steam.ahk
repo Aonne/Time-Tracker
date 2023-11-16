@@ -19,7 +19,7 @@
     FileRead,       EndPrevious,                            %Temp%\steam_end_previous.temp
 
     FileAppend,     %Start% `n%End%,                        %Temp%\Steam_temp.temp
-
+ 
 ; Clean ================================================================================================
     Loop, read, %Temp%\Steam_temp.temp, %Temp%\Steam1.temp
     {

@@ -8,7 +8,7 @@ SetWorkingDir, %A_ScriptDir%
 
     IniRead, EAPath, %path%\user_options.ini, Path, EADesktop
     Temp = %Path%\Temp
-
+ 
 ; Retrive Files ========================================================================================
     FileCopy, %EAPath%\EADesktop.log, %Temp%\EADesktop.temp
     

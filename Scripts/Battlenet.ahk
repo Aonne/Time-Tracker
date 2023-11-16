@@ -7,7 +7,7 @@
     IniRead, Battlenet_Path, %path%\user_options.ini, Path, Battlenet
     Temp = %Path%\Temp
 
-
+ 
 ; Retreive Files =========================================================================================
     FileCreateDir, %Temp%
 

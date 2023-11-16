@@ -27,7 +27,7 @@ SetWorkingDir, %A_ScriptDir%
                 YMD := SubStr(A_LoopReadLine, 1,10)
                 HMS := SubStr(A_LoopreadLine, 12,8)
                 rest := SubStr(A_LoopReadLine, 24)
-
+ 
                 Fileappend, %YMD%`, %HMS%%rest%`n   
             }
 
