@@ -16,16 +16,24 @@
     {
         if inStr(A_LoopReadLine, "INFO |GamesEditor:Started")
         {
-            FileGetTime, LatestTime, %A_LoopFileFullPath%, M
-            Formattime, LatestTime, %LatestTime%, yyyy
-            Fileappend, %LatestTime%-%A_LoopReadLine%`n            
+            day := SubStr(A_LoopReadLine, 1,2)
+            month := SubStr(A_LoopReadLine, 4,2)
+            Htime := SubStr(A_LoopreadLine, 7, 8)
+            rest := SubStr(A_LoopReadLine, 19)
+            FileGetTime, year, %A_LoopFileFullPath%, M
+            Formattime, year, %year%, yyyy
+            Fileappend, %year%-%month%-%day%`, %Htime%%rest%`n              
         }
 
         if inStr(A_LoopReadLine, "stopped after")
         {
-            FileGetTime, LatestTime, %A_LoopFileFullPath%, M
-            Formattime, LatestTime, %LatestTime%, yyyy
-            FileAppend, %LatestTime%-%A_LoopReadLine%`n            
+            day := SubStr(A_LoopReadLine, 1,2)
+            month := SubStr(A_LoopReadLine, 4,2)
+            Htime := SubStr(A_LoopreadLine, 7, 8)
+            rest := SubStr(A_LoopReadLine, 19)
+            FileGetTime, year, %A_LoopFileFullPath%, M
+            Formattime, year, %year%, yyyy
+            Fileappend, %year%-%month%-%day%`, %Htime%%rest%`n             
         }
 
     }

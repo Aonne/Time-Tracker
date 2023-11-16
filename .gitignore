@@ -64,3 +64,12 @@ Temp/0/Epic.log
 Temp/0/Battlenet.log
 Temp/Ubisoft.log
 Temp/0/Ubisoft.log
+api.steampowered.com.json
+fixes/Temp/Battlenet.log
+fixes/Temp/Epic.log
+fixes/Temp/Playnite.log
+fixes/Temp01/Playnite.log
+fixes/Temp/Steam.log
+fixes/Temp/Ubisoft.log
+.gitignore
+fixes/Temp01/bla.ahk
