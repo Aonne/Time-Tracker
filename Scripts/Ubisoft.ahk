@@ -18,12 +18,28 @@ SetWorkingDir, %A_ScriptDir%
     Loop, read, %Temp%\ubisoft.temp, %Temp%\ubisoft1.temp
     {
         if inStr(A_LoopReadLine, "has been started with product id")
-            Fileappend, %A_LoopReadLine%`n
+        {
+            line = %A_LoopReadLine%
+
+            YMD := SubStr(line, 10,10)
+            HMS := SubStr(line, 21,8)
+            rest := SubStr(line, 42)
+
+            Fileappend, %YMD%`, %HMS%%rest%`n 
+        }
 
         if inStr(A_LoopReadLine, "disconnected")
         {
             if inStr(A_LoopReadLine, "ApiProcessConnection")
-                Fileappend, %A_LoopReadLine%`n            
+            {
+                line = %A_LoopReadLine%
+
+                YMD := SubStr(line, 10,10)
+                HMS := SubStr(line, 21,8)
+                rest := SubStr(line, 42)
+
+                Fileappend, %YMD%`, %HMS%%rest%`n 
+            }         
         }
     }
 

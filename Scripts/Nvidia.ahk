@@ -23,13 +23,25 @@ SetWorkingDir, %A_ScriptDir%
     Loop, read, %Temp%\Nvidia.temp, %Temp%\Nvidia1.temp
     {
         if inStr(A_LoopReadLine, "loadSlot for game")
-            FileAppend, %A_LoopReadLine%`n
+            {
+                YMD := SubStr(A_LoopReadLine, 1,10)
+                HMS := SubStr(A_LoopreadLine, 12,8)
+                rest := SubStr(A_LoopReadLine, 24)
 
-        ;if instr(A_LoopreadLine, "Current Game app exited")
+                Fileappend, %YMD%`, %HMS%%rest%`n   
+            }
+
+        ;if instr(A_LoopreadLine, "Current Game app exited") ; for some reason it was that when i installed geforce so idk
         ;    Fileappend, %A_LoopReadLine%`n
 
         if instr(A_LoopreadLine, "onGameAppExit") ;temp
-            Fileappend, %A_LoopReadLine%`n
+            {
+                YMD := SubStr(A_LoopReadLine, 1,10)
+                HMS := SubStr(A_LoopreadLine, 12,8)
+                rest := SubStr(A_LoopReadLine, 24)
+
+                Fileappend, %YMD%`, %HMS%%rest%`n   
+            }
     }
 
 ; Replace  ============================================================================================

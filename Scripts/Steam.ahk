@@ -23,22 +23,32 @@
 ; Clean ================================================================================================
     Loop, read, %Temp%\Steam_temp.temp, %Temp%\Steam1.temp
     {
-        ;if nextline = 1
-        ;{
-        ;    Fileappend, %A_LoopReadLine%`n
-        ;    nextline = 0
-        ;}
         if InStr(A_LoopReadLine, "exited.")
-            Fileappend, %A_LoopReadLine%`n
+        {
+            line = %A_LoopReadLine%
+            if inStr(line, "Update Queued")
+                line := ""
+
+            YMD := SubStr(line, 1,11)
+            HMS := SubStr(line, 12,9)
+            rest := SubStr(line, 21)
+
+            Fileappend, %YMD%`,%HMS%%rest%`n 
+        }
 
         if InStr(A_LoopReadLine, "App Running")
-            Fileappend, %A_LoopReadLine%`n  
+        {
+            line = %A_LoopReadLine%
+            if inStr(line, "Update Queued")
+                line := ""
 
-        ;if InStr(A_LoopReadLine, ".exe")
-        ;    {
-        ;        Fileappend, %A_LoopReadLine%`n
-        ;        nextline = 1
-        ;    }
+            YMD := SubStr(line, 1,11)
+            HMS := SubStr(line, 12,9)
+            rest := SubStr(line, 21)
+
+            Fileappend, %YMD%`,%HMS%%rest%`n 
+        }
+
     }
 
 ; Keep ================================================================================================

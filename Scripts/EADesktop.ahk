@@ -17,29 +17,33 @@ SetWorkingDir, %A_ScriptDir%
     {
         if inStr(A_LoopReadLine, "Issuing launch")
         {
-            trim := SubStr(A_LoopReadLine, 8)
-            Fileappend, %trim%`n
+            YMD := SubStr(A_LoopReadLine, 9,10)
+            HMS := SubStr(A_LoopReadLine, 20, 8)
+            rest := SubStr(A_LoopReadLine, 70)
+            Fileappend, %YMD%`, %HMS%`, %rest%`n
         }
 
         if InStr(A_LoopReadLine, "Game process terminated")
         {
-            trim := SubStr(A_LoopReadLine, 8)
-            FileAppend, %trim%`n
+            YMD := SubStr(A_LoopReadLine, 9,10)
+            HMS := SubStr(A_LoopReadLine, 20, 8)
+            rest := SubStr(A_LoopReadLine, 70)
+            Fileappend, %YMD%`, %HMS%`, %rest%`n
         }
-
     }
+
 ; Replace ==============================================================================================
     FileRead, Clean, %Temp%\EADesktop1.temp
 
     StringReplace, Clean, Clean,`(, , All
     StringReplace, Clean, Clean,`), , All
 
-    ;Clean := StrReplace(Clean, "	PID:  ", "")
-    ;Clean := StrReplace(Clean, "	TID: ", "")
-    Clean := StrReplace(Clean, "	INFO    	eax::components::clientLibrary::ClientLauncher::requestLicenseAndLaunch	Issuing launch: workingDirectory", ",Started, ")
-    Clean := StrReplace(Clean, "	INFO    	eax::components::gameLocalServices::ProcessCoordinator::FsmHost::doProcessActiveGames	Game process terminated", ", Exited")
+    StringReplace, Clean, Clean, ::components::gameLocalServices::ProcessCoordinator::FsmHost::doProcessActiveGames	Game process terminated, Ended, All
+    StringReplace, Clean, Clean, ::components::clientLibrary::ClientLauncher::requestLicenseAndLaunch	Issuing launch: workingDirectory, Started`, , All
+
 
 FileAppend, %Clean%, %Temp%\EADesktop.log
+
 ; Sort =================================================================================================
     FileRead, Clean, %Temp%\EADesktop.log
     Sort, Clean, u

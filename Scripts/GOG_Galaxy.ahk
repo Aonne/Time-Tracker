@@ -20,121 +20,44 @@
     {
         if InStr(A_LoopReadLine, "Launching process. Command")
         {
-            Fileappend, %A_LoopReadLine%`n
-        }
+            line = %A_LoopReadLine%
+            if inStr(line, "GalaxyUpdater.exe")
+                line := ""
+            if inStr(line, "Renderer.exe")
+                line := ""
+            if inStr(line, "SubSystem installer thread ")
+                line := ""
 
-        if InStr(A_LoopReadLine, "Launching process. Command")
-        {
-            Fileappend, %A_LoopReadLine%`n
+            YMD := SubStr(line, 1,10)
+            HMS := SubStr(line, 12,8)
+            rest := SubStr(line, 101)
+
+            Fileappend, %YMD%`, %HMS%`, %rest%`n  
         }
 
         if InStr(A_LoopReadLine, " is closed")
         {
-            Fileappend, %A_LoopReadLine%`n
+            line = %A_LoopReadLine%
+            if inStr(line, "GalaxyUpdater.exe")
+                line := ""
+            if inStr(line, "Renderer.exe")
+                line := ""
+            if inStr(line, "SubSystem installer thread ")
+                line := ""
+
+            YMD := SubStr(line, 1,10)
+            HMS := SubStr(line, 12,8)
+            rest := SubStr(line, 72)
+
+            Fileappend, %YMD%`, %HMS%`, %rest%`n  
         }    
     }
-; Keep ================================================================================================
-    FileRead, Keep,                                                 %Temp%\GOG_Galaxy1.temp
-        i=0
-        e:=""
-        ToDelete=GalaxyUpdater.exe    ;- skip this and next line
-
-
-        ;-------------------
-        Loop,parse,Keep,`n,`r
-        {
-        x:=a_loopfield
-        if (x="")
-        continue
-        if (i=1)
-        {
-        i=0
-        continue
-        } 
-        if x contains %ToDelete%
-        {
-        i=1
-        continue
-        }
-
-        e .= x . "`r`n"
-        }
-    
-    FileAppend, %e%, %Temp%\GOG_Galaxy2.temp
-
-    FileRead, Keep,                                                 %Temp%\GOG_Galaxy2.temp
-        i=0
-        e:=""
-        ToDelete=Renderer.exe    ;- skip this and next line
-
-
-        ;-------------------
-        Loop,parse,Keep,`n,`r
-        {
-        x:=a_loopfield
-        if (x="")
-        continue
-        if (i=1)
-        {
-        i=0
-        continue
-        } 
-        if x contains %ToDelete%
-        {
-        i=1
-        continue
-        }
-
-        e .= x . "`r`n"
-        }
-    
-    FileAppend, %e%, %Temp%\GOG_Galaxy3.temp
-
-    FileRead, Keep,                                                 %Temp%\GOG_Galaxy3.temp
-        i=0
-        e:=""
-        ToDelete=SubSystem installer thread    ;- skip this and next line
-
-
-        ;-------------------
-        Loop,parse,Keep,`n,`r
-        {
-        x:=a_loopfield
-        if (x="")
-        continue
-        if (i=1)
-        {
-        i=0
-        continue
-        } 
-        if x contains %ToDelete%
-        {
-        i=1
-        continue
-        }
-
-        e .= x . "`r`n"
-        }
-    
-    FileAppend, %e%, %Temp%\GOG_Galaxy4.temp
+return
 ; Replace  ============================================================================================
-    FileRead, Clean, %Temp%\GOG_Galaxy4.temp
+    FileRead, Clean, %Temp%\GOG_Galaxy1.temp
 
-    Clean := StrReplace(Clean, "Information", "")
-    Clean := StrReplace(Clean, "galaxy_client", "")
-    Clean := StrReplace(Clean, "Asynchronous Process Thread", "")
-    Clean := StrReplace(Clean, "[", "")
-    Clean := StrReplace(Clean, "]", "")
-    Clean := StrReplace(Clean, "  (", ", ")
-    Clean := StrReplace(Clean, ")", "")
-    Clean := StrReplace(Clean, "{", "")
-    Clean := StrReplace(Clean, "}", "")
-    Clean := StrReplace(Clean, "\", "")
 
-    Clean := StrReplace(Clean, ": Launching process. Command: F:Cyberpunk 2077binx64Cyberpunk2077.exe, Initial Directory: F:Cyberpunk 2077, Elevation Mode: DontChange, Arguments:   , Success Range: Zero.", "Cyberpunk, Started")
-    Clean := StrReplace(Clean, ": The game 'gog_1423049311' is closed.", ", Cyberpunk, Ended")
-    ;Clean := StrReplace(Clean, " Asynchronous", ", Asynchronous")
-
+    ;to do
 
 
 FileAppend, %Clean%, %Temp%\GOG_Galaxy.log

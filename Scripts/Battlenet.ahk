@@ -21,10 +21,22 @@
     Loop, read, %Temp%\Battlenet.temp, %Temp%\Battlenet1.temp
     {
         if InStr(A_LoopReadLine, "[InstallManager] {Main} Launched ")
-            Fileappend, %A_LoopReadLine%`n
+            {
+                YMD := SubStr(A_LoopReadLine, 1,10)
+                HMS := SubStr(A_LoopreadLine, 12,8)
+                rest := SubStr(A_LoopReadLine, 27)
+
+                Fileappend, %YMD%`, %HMS%%rest%`n   
+            }
 
         if InStr(A_LoopReadLine, "[InstallManager] {Main} Game finished")
-            Fileappend, %A_LoopReadLine%`n
+        {
+            YMD := SubStr(A_LoopReadLine, 1,10)
+            HMS := SubStr(A_LoopreadLine, 12,8)
+            rest := SubStr(A_LoopReadLine, 27)
+
+            Fileappend, %YMD%`, %HMS%%rest%`n   
+        }
     }
 ;Replace  ================================================================================================
     FileRead, Clean, %Temp%\Battlenet1.temp
