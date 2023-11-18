@@ -51,37 +51,8 @@
 
     }
 
-; Keep ================================================================================================
-    FileRead, Keep, %Temp%\Steam1.temp
-        i=0
-        e:=""
-        ToDelete=Update Queued    ;- skip this and next line
-
-
-        ;-------------------
-        Loop,parse,Keep,`n,`r
-        {
-        x:=a_loopfield
-        if (x="")
-        continue
-        if (i=1)
-        {
-        i=0
-        continue
-        } 
-        if x contains %ToDelete%
-        {
-        i=1
-        continue
-        }
-
-        e .= x . "`r`n"
-        }    
-
-    FileAppend, %e%, %Temp%\Steam2.temp
-
 ; Replace  ============================================================================================
-    FileRead, Clean, %Temp%\Steam2.temp
+    FileRead, Clean, %Temp%\Steam1.temp
 
     Clean := StrReplace(Clean, " exited.", ", Ended")
     Clean := StrReplace(Clean, " state changed : Fully Installed,App Running,", ", Started")
