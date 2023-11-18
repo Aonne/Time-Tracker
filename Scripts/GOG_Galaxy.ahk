@@ -52,7 +52,7 @@
             Fileappend, %YMD%`, %HMS%`, %rest%`n  
         }    
     }
-return
+
 ; Replace  ============================================================================================
     FileRead, Clean, %Temp%\GOG_Galaxy1.temp
 
