@@ -2,6 +2,9 @@
 SendMode Input
 SetWorkingDir, %A_ScriptDir%
 
+Msgbox, outdated
+return
+
 Temp = %A_ScriptDir%\Temp
 Temp01 = %A_ScriptDir%\Temp01
 
