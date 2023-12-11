@@ -40,7 +40,7 @@ Windows 10 or 11, doesnt work on Linux.
   * Every launchers use log files for error checking. We can look into them and search for a few parameters: What game was launched, when was it launched, and when was it stopped. But those log can still be difficult to read, so Time Tracker will clean them until having only the time and the process/game. In practice it won't be that clean, that's where people will need to interprete.
 
 * What launchers are featured?
-  * As for now : Steam, Epic, GOG, Minecraft, Battlenet, EA Desktop, MultiMC, Prism, Playnite and Riot (and Nvidia using Nvidia Share so activate the in game overlay). If you want more, please open an [issue](https://github.com/Aonne/Time-Tracker/issues/new) with the tag ```launcher request```.
+  * As for now : Steam, Epic, GOG, Minecraft, Battlenet (soon), EA Desktop, MultiMC, Prism, Playnite and Riot (and Nvidia using Nvidia Share so activate the in game overlay). If you want more, please open an [issue](https://github.com/Aonne/Time-Tracker/issues/new) with the tag ```launcher request```.
 
 * It doesnt work!
   * Check if the paths lead to something, every one of them should lead to a folder with at least one *.log* file in it (except Riot that is different). If paths are not right, you can manually change the paths in ````user_options.ini````.
