@@ -171,5 +171,5 @@ Loop, %OutputTemp%\*.log
     FileAppend, %Clean%, %Temp%\Minecraft.log
     fileRemoveDir, %Temp%\Minecraft, 1
 
-;Delete ===============================================================================================
+;Delete ================================================================================================
     FileDelete, %Temp%\*.temp

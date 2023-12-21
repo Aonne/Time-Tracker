@@ -5,8 +5,15 @@ SetWorkingDir, %A_ScriptDir%
 ;flag missing lines, 
 ;thx chatgpt i really did nothing on this one
 
-Temp = %A_ScriptDir%\Temp
+Temp := strreplace(A_ScriptDir, "fixes", "Temp")
 Temp01 = %A_ScriptDir%\Temp01
+
+; ce que part 1 faisait
+FileCreateDir, %Temp01%
+
+filecopy, %Temp%\*.log, %Temp01%, 1
+
+
 
 Progress, 0, Steam
 
@@ -98,7 +105,7 @@ FileAppend, %modifiedLines%, %logFilePath%
 ; Notify when the script has finished processing the file
 Progress, 90
 
-;Create final file
+
 Progress, off
 
 Msgbox, done
