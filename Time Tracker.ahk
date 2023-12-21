@@ -230,13 +230,7 @@ Return
     return
 
     ButtonBattlenet:
-        FileSelectFile, BattlenetPath, 3, , Open a file, Battlenet.exe
-        if FileExist(BattlenetPath)
-        {
-            Guicontrol,, BattlenetPath, %BattlenetPath%
-            Battlenet = %BattlenetPath%       
-            iniWrite, %Battlenet%, %UserOptions%, Path, Battlenet       
-        }
+        Run, %Battlenet%
     return
 
     ButtonMinecraft:
