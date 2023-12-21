@@ -18,6 +18,8 @@
     ;move .gz Prism
     Loop, %Prism%\*.* ,0,1
     {
+        if not FileExist(Prism)
+            break
         if A_LoopFileExt in gz
         {
             if not instr(A_LoopFileName, "debug")
@@ -40,6 +42,8 @@
     ;move .gz MultiMC
     Loop, %MultiMC%\*.* ,0,1
     {
+        if not FileExist(MultiMC)
+            break
         if A_LoopFileExt in gz
         {
             if not instr(A_LoopFileName, "debug")
@@ -61,6 +65,8 @@
     ;move .gz CurseForge
     Loop, %CurseForge%\*.* ,0,1
     {
+        if not FileExist(CurseForge)
+            break
         if A_LoopFileExt in gz
         {
             if not instr(A_LoopFileName, "debug")
@@ -82,6 +88,8 @@
     ;move .gz .minecraft
     Loop, %Minecraft_Path%\*.* ,0,1
     {
+        if not FileExist(Minecraft_Path)
+            break
         if A_LoopFileExt in gz
         {
             if not instr(A_LoopFileName, "debug")
