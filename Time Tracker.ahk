@@ -171,10 +171,12 @@ Gui, Add, CheckBox, x250 y9 w130 h30 vstartupvar gStartup, Launch at start up
             Guicontrol,, UbisoftPath, NOT FOUND
 
 
-    ; first time user
+    ; first time user 
+    /*
         eh = %A_ScriptDir%\Temp
         if not fileExist(eh)
             GuiControl, Disable, DoStuff
+    */
 
 Gui, Show,, Time Tracker by Aonne. v%codeversion%
 Return
@@ -187,6 +189,7 @@ Return
     return
 
     ButtonDoStuff:
+        FileCreateDir, %Temp%
         RunWait, %A_ScriptDir%\loader.ahk
         Msgbox, Done!
     return
