@@ -21,18 +21,42 @@
         if InStr(A_LoopReadLine, "Launching app")
         {
             trim := SubStr(A_LoopReadLine, 1, InStr(A_LoopReadLine,"commandline") - 1)
-            Fileappend, %trim%`n
+
+            Year := SubStr(trim, 2, 4)
+            Month := SubStr(trim, 7, 2)
+            Day := SubStr(trim, 10, 2)
+            Hour := SubStr(trim, 13, 2)
+            Min := SubStr(trim, 16, 2)
+            Sec := SubStr(trim, 19, 2)
+            rest := SubStr(trim, 75)
+
+            Fileappend, %Year%-%Month%-%Day%`, %Hour%:%Min%:%Sec%`, Started`, %rest%`n
         }
 
         if InStr(A_LoopReadLine, "moved from foreground to dead")
         {
-            Fileappend, %A_LoopReadLine%`n
+            trim = %A_LoopReadLine%
+
+            Year := SubStr(trim, 2, 4)
+            Month := SubStr(trim, 7, 2)
+            Day := SubStr(trim, 10, 2)
+            Hour := SubStr(trim, 13, 2)
+            Min := SubStr(trim, 16, 2)
+            Sec := SubStr(trim, 19, 2)
+            rest := SubStr(trim, 65)
+
+            Fileappend, %Year%-%Month%-%Day%`, %Hour%:%Min%:%Sec%`, Stopped`, %rest%`n
         }    
     }
 
+
+
 ;Replace  =============================================================================================
     FileRead, Clean, %Temp%\Epic1.temp
-    
+
+    Clean := StrReplace(Clean, "/", "")
+    Clean := StrReplace(Clean, "\", "")
+
     Clean := StrReplace(Clean, "[", "")
     Clean := StrReplace(Clean, "]", ", ")
     Clean := StrReplace(Clean, "FCommunityPortalLaunchAppTask: Launching app '", "")
@@ -40,8 +64,8 @@
     Clean := StrReplace(Clean, "/Epic Games/", "")
     Clean := StrReplace(Clean, "\Epic Games\", "")
     Clean := StrReplace(Clean, ".exe", "")
-    Clean := StrReplace(Clean, "' with ", ", Started")
-    Clean := StrReplace(Clean, " moved from foreground to dead", ", Ended")
+    Clean := StrReplace(Clean, "' with ", "")
+    Clean := StrReplace(Clean, " moved from foreground to dead", "")
     Clean := StrReplace(Clean, "-", " ")
     Clean := StrReplace(Clean, ".", "-")
 

@@ -15,11 +15,11 @@ SetWorkingDir, %A_ScriptDir%
     Loop, %Battlenet_Path%\*.log
     {
         FileRead, aFileContents, %A_LoopFileFullPath%
-        FileAppend, %aFileContents%, %Temp%\Battlenet1.temp
+        FileAppend, %aFileContents%, %Temp%\Battlenet.temp
     }
 
 ; Clean ==================================================================================================
-    Loop, read, %Temp%\Battlenet1.temp, %Temp%\Battlenet.log
+    Loop, read, %Temp%\Battlenet.temp, %Temp%\Battlenet1.temp
     {
         if InStr(A_LoopReadLine, "{Main} Game is running: ")
         {
@@ -39,6 +39,13 @@ SetWorkingDir, %A_ScriptDir%
             Fileappend,  %YMD%`, %HMS%`, Stopped`, %rest%`n  
         }
     }
+
+; Replace  ============================================================================================
+    FileRead,  Clean, %Temp%\Battlenet1.temp
+
+    Clean := StrReplace(Clean, "prometheus", "Overwatch 2") ; why overwatch why
+
+    Fileappend, %Clean%, %Temp%\Battlenet.log
 
 ;Sort==================================================================================================
     FileRead,  Clean, %Temp%\Battlenet.log

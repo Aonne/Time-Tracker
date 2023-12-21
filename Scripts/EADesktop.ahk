@@ -20,7 +20,8 @@ SetWorkingDir, %A_ScriptDir%
             YMD := SubStr(A_LoopReadLine, 9,10)
             HMS := SubStr(A_LoopReadLine, 20, 8)
             rest := SubStr(A_LoopReadLine, 70)
-            Fileappend, %YMD%`, %HMS%`, %rest%`n
+            For_stop = %rest%
+            Fileappend, %YMD%`, %HMS%`, Started`, %rest%`n
         }
 
         if InStr(A_LoopReadLine, "Game process terminated")
@@ -28,7 +29,7 @@ SetWorkingDir, %A_ScriptDir%
             YMD := SubStr(A_LoopReadLine, 9,10)
             HMS := SubStr(A_LoopReadLine, 20, 8)
             rest := SubStr(A_LoopReadLine, 70)
-            Fileappend, %YMD%`, %HMS%`, %rest%`n
+            Fileappend, %YMD%`, %HMS%`, Stopped`, %For_stop%`n
         }
     }
 
@@ -38,8 +39,8 @@ SetWorkingDir, %A_ScriptDir%
     StringReplace, Clean, Clean,`(, , All
     StringReplace, Clean, Clean,`), , All
 
-    StringReplace, Clean, Clean, ::components::gameLocalServices::ProcessCoordinator::FsmHost::doProcessActiveGames	Game process terminated, Ended, All
-    StringReplace, Clean, Clean, ::components::clientLibrary::ClientLauncher::requestLicenseAndLaunch	Issuing launch: workingDirectory, Started`, , All
+    StringReplace, Clean, Clean, ::components::gameLocalServices::ProcessCoordinator::FsmHost::doProcessActiveGames	Game process terminated, , All
+    StringReplace, Clean, Clean, ::components::clientLibrary::ClientLauncher::requestLicenseAndLaunch	Issuing launch: workingDirectory, , All
 
 
 FileAppend, %Clean%, %Temp%\EADesktop.log

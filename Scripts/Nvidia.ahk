@@ -27,12 +27,9 @@ SetWorkingDir, %A_ScriptDir%
                 YMD := SubStr(A_LoopReadLine, 1,10)
                 HMS := SubStr(A_LoopreadLine, 12,8)
                 rest := SubStr(A_LoopReadLine, 24)
- 
-                Fileappend, %YMD%`, %HMS%%rest%`n   
+                for_stop = %rest%
+                Fileappend, %YMD%`, %HMS%`, Started`, %rest%`n  
             }
-
-        ;if instr(A_LoopreadLine, "Current Game app exited") ; for some reason it was that when i installed geforce so idk
-        ;    Fileappend, %A_LoopReadLine%`n
 
         if instr(A_LoopreadLine, "onGameAppExit") ;temp
             {
@@ -40,7 +37,7 @@ SetWorkingDir, %A_ScriptDir%
                 HMS := SubStr(A_LoopreadLine, 12,8)
                 rest := SubStr(A_LoopReadLine, 24)
 
-                Fileappend, %YMD%`, %HMS%%rest%`n   
+                Fileappend, %YMD%`, %HMS%`, Stopped`,%for_stop%`n   
             }
     }
 
@@ -48,8 +45,9 @@ SetWorkingDir, %A_ScriptDir%
     FileRead,  Clean, %Temp%\Nvidia1.temp
 
     StringReplace, Clean, Clean,`", , All
-    Clean := StrReplace(Clean, "  INFO  osc/nvCameraService- loadSlot for game: ", ", Started,")
-    Clean := StrReplace(Clean, "  INFO  osc/nvCameraService- onGameAppExit invoked. UIRunning = false ,app proc ID", ", Exited,")
+    Clean := StrReplace(Clean, "INFO  osc/nvCameraService- loadSlot for game: ", "")
+    Clean := StrReplace(Clean, "INFO  osc/nvCameraService- onGameAppExit invoked. UIRunning = false ,app proc ID", "")
+    Clean := Strreplace(Clean, "   ", "")
     Clean := StrReplace(Clean, "\\", "")
 
     ; Exceptions

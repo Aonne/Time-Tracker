@@ -22,7 +22,7 @@
                 FileGetTime, Modification, %A_LoopFileFullPath%, M
                 FormatTime,  Modification, %Modification%, yyyy-MM-dd HH:mm:ss
                 
-                Content = %Creation%, Started, Valorant`n%Modification%, Ended, Valorant`n
+                Content = %Creation%, Started, Valorant`n%Modification%, Stopped, Valorant`n
                 FileAppend, %Content%, %Temp%\Riot.log
 
             }

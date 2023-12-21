@@ -19,13 +19,14 @@ SetWorkingDir, %A_ScriptDir%
     {
         if inStr(A_LoopReadLine, "has been started with product id")
         {
-            line = %A_LoopReadLine%
+            line := SubStr(A_LoopReadLine, 1, InStr(A_LoopReadLine,"(branch:") - 1)
 
             YMD := SubStr(line, 10,10)
             HMS := SubStr(line, 21,8)
-            rest := SubStr(line, 42)
+            rest := SubStr(line, 168)
+            for_Stop = %rest% ; need to find ubisoft game ids cause huh
 
-            Fileappend, %YMD%`, %HMS%%rest%`n 
+            Fileappend, %YMD%`, %HMS%`, Started`, %rest%`n 
         }
 
         if inStr(A_LoopReadLine, "disconnected")
@@ -36,22 +37,21 @@ SetWorkingDir, %A_ScriptDir%
 
                 YMD := SubStr(line, 10,10)
                 HMS := SubStr(line, 21,8)
-                rest := SubStr(line, 42)
 
-                Fileappend, %YMD%`, %HMS%%rest%`n 
+                Fileappend, %YMD%`, %HMS%`, Stopped`, %for_stop%`n 
             }         
         }
     }
 
 ; Replace ==============================================================================================
     FileRead, Clean, %Temp%\ubisoft1.temp
-
-    Clean := StrReplace(Clean, "      INFO       ApiProcessConnection.cpp (299)                   Game with process id ", ", Exited, ")
-    Clean := StrReplace(Clean, "      INFO       ApiProcessConnection.cpp (136)                   Game with process id ", ", Started, ")
+/*
+    Clean := StrReplace(Clean, "INFO       ApiProcessConnection.cpp (299)                   Game with process id ", "")
+    Clean := StrReplace(Clean, "INFO       ApiProcessConnection.cpp (136)                   Game with process id ", "")
     Clean := StrReplace(Clean, " has been started with product id ", ", Game = ")
     Clean := StrReplace(Clean, " (branch: 'default').", "")
     Clean := StrReplace(Clean, "disconnected.", "")
-
+*/
 FileAppend, %Clean%, %Temp%\Ubisoft.log
 
 ; Sort =================================================================================================

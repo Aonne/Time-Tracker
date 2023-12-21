@@ -22,7 +22,7 @@
             rest := SubStr(A_LoopReadLine, 19)
             FileGetTime, year, %A_LoopFileFullPath%, M
             Formattime, year, %year%, yyyy
-            Fileappend, %year%-%month%-%day%`, %Htime%%rest%`n              
+            Fileappend, %year%-%month%-%day%`, %Htime%`, Started`, %rest%`n              
         }
 
         if inStr(A_LoopReadLine, "stopped after")
@@ -33,7 +33,7 @@
             rest := SubStr(A_LoopReadLine, 19)
             FileGetTime, year, %A_LoopFileFullPath%, M
             Formattime, year, %year%, yyyy
-            Fileappend, %year%-%month%-%day%`, %Htime%%rest%`n             
+            Fileappend, %year%-%month%-%day%`, %Htime%`, Stopped`, %rest%`n             
         }
 
     }
@@ -41,10 +41,10 @@
 ; Replace ==============================================================================================
     FileRead, Clean, %Temp%\playnite1.temp
 
-    Clean := StrReplace(Clean, "|INFO |GamesEditor:Started", ",")
-    Clean := StrReplace(Clean, " game.", ", Started")
-    Clean := StrReplace(Clean, " stopped ", ", Stopped, ")
-    Clean := StrReplace(Clean, "|INFO |GamesEditor:Game", ",")
+    Clean := StrReplace(Clean, "|INFO |GamesEditor:Started ", "")
+    Clean := StrReplace(Clean, " game.", "")
+    Clean := StrReplace(Clean, " stopped ", ", ")
+    Clean := StrReplace(Clean, "|INFO |GamesEditor:Game ", "")
 
 FileAppend, %Clean%, %Temp%\Playnite.log
 

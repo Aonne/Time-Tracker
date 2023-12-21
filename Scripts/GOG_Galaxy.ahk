@@ -27,6 +27,8 @@
                 line := ""
             if inStr(line, "SubSystem installer thread ")
                 line := ""
+            if inStr(line, "unins000.exe")
+                line := ""
 
             YMD := SubStr(line, 1,10)
             HMS := SubStr(line, 12,8)
