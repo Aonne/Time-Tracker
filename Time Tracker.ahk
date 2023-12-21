@@ -4,6 +4,17 @@
 IniRead, codeversion, %A_ScriptDir%\options.ini, Options, version
 Gui, destroy
 
+; First Timer
+    UserOptions = %A_ScriptDir%\user_options.ini
+
+    if not FileExist(UserOptions)
+        Filecopy, %A_ScriptDir%\options.ini, %A_ScriptDir%\user_options.ini
+        iniDelete, %A_ScriptDir%\user_options.ini, Options, version
+        FileRead, var, %UserOptions%                                    ; i swear there was a better way to do that
+        StringReplace, var, var, Username, %A_UserName%, All
+        FileDelete, %UserOptions%
+        Fileappend, %var%, %UserOptions%
+
 ; Path ============================================================================================
     StartupFolder =  C:\Users\%A_UserName%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
     Scripts =   %A_ScriptDir%\Scripts
@@ -68,8 +79,6 @@ Gui, Add, CheckBox, x250 y9 w130 h30 vstartupvar gStartup, Launch at start up
     Gui, Add, GroupBox, x2 y588 w500 h50
 
 ; Retreive User Options ============================================================================
-    UserOptions = %A_ScriptDir%\user_options.ini
-
     ; Startup
         IniRead, IsStartupOn, %UserOptions%, Options, Startup
         if IsStartupOn = 1
@@ -98,6 +107,8 @@ Gui, Add, CheckBox, x250 y9 w130 h30 vstartupvar gStartup, Launch at start up
     ; Epic
         IniRead, Epic, %UserOptions%, Path, Epic
         GuiControl,, EpicPath, %Epic%
+        if not FileExist(Steam)
+            Guicontrol,, SteamPath, NOT FOUND
 
     ; GOG
         IniRead, GOG, %UserOptions%, Path, GOG
@@ -196,7 +207,7 @@ Return
         return
 
     ButtonSteam:
-        FileSelectFile, SteamPath, 3, , Steam.exe
+        FileSelectFile, SteamPath, 3, , Open a file, steam.exe
         if FileExist(SteamPath)
         {
             SteamPath := StrReplace(SteamPath, "steam.exe", "logs")
