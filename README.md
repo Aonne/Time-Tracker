@@ -74,13 +74,13 @@ In case you still have issues or are curious about things.
     *  Will search for .gz and .log files in MultiMC\instances
   * CurseForge
     *  Will search for .gz and .log files in YOUR_USERNAME\curseforge\minecraft\Instances
-  * Nvidia
-    *  Will search for console.log and console.log.bak in Local\NVIDIA Corporation\NVIDIA Share
-  * Playnite
-    *  Will search for playnite.log in the playnite folder
-  * Riot (WIP, need to do something if people download in other folders)
-    *  Will search for any .log files in Riot Games\Riot Client\League of Legends\Logs\LeagueClient Logs for League of Legends and YOUR_USERNAME\AppData\Local\VALORANT\Saved\Logs for Valorant
-  * Steam
-    *  Will search for content_log.txt, content_log.previous.txt, shader_log.txt, shader_log.previous.txt in Steam\logs
-  * Ubisoft
-    *  Will search for launcher_log.txt in Program Files (x86)\Ubisoft\Ubisoft Game Launcher\logs
+* Nvidia
+  *  Will search for console.log and console.log.bak in Local\NVIDIA Corporation\NVIDIA Share
+* Playnite
+  *  Will search for playnite.log in the playnite folder
+* Riot (WIP, need to do something if people download in other folders)
+  *  Will search for any .log files in Riot Games\Riot Client\League of Legends\Logs\LeagueClient Logs for League of Legends and YOUR_USERNAME\AppData\Local\VALORANT\Saved\Logs for Valorant
+* Steam
+  *  Will search for content_log.txt, content_log.previous.txt, shader_log.txt, shader_log.previous.txt in Steam\logs
+* Ubisoft
+  *  Will search for launcher_log.txt in Program Files (x86)\Ubisoft\Ubisoft Game Launcher\logs
