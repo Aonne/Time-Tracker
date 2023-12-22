@@ -67,13 +67,13 @@ In case you still have issues or are curious about things.
   *  Will search for any files in C:\ProgramData\GOG.com\Galaxy\logs (This is very inefficient and will need to be more specific)
 * Minecraft
   *  Vanilla
-    *  Will search for .gz and .log files in Roaming\.minecraft\logs
+    Will search for .gz and .log files in Roaming\.minecraft\logs
   * Prism
-    *  Will search for .gz and .log files in Prism Launcher\instances
+    Will search for .gz and .log files in Prism Launcher\instances
   * MultiMC
-    *  Will search for .gz and .log files in MultiMC\instances
+    Will search for .gz and .log files in MultiMC\instances
   * CurseForge
-    *  Will search for .gz and .log files in YOUR_USERNAME\curseforge\minecraft\Instances
+    Will search for .gz and .log files in YOUR_USERNAME\curseforge\minecraft\Instances
 * Nvidia
   *  Will search for console.log and console.log.bak in Local\NVIDIA Corporation\NVIDIA Share
 * Playnite
