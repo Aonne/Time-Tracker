@@ -51,3 +51,13 @@ Windows 10 or 11, doesnt work on Linux or Mac.
 
 * Why Autohotkey?
   * I only know Autohotkey as I wrote a few scripts with it, nothing big. It's actually my first project that I can call that.
+
+
+# In Depth
+
+In case you still have issues or are curious about things.
+
+* Battlenet
+  *     Will search for any .log files in Local\Battle.net\Logs
+* EADesktop
+  *     Will search for EADesktop.log in Local\Electronic Arts\EA Desktop\Logs
