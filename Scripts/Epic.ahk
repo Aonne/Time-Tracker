@@ -29,7 +29,8 @@
             Min := SubStr(trim, 16, 2)
             Sec := SubStr(trim, 19, 2)
             rest := SubStr(trim, 75)
-
+            if (rest = "")
+                continue
             Fileappend, %Year%-%Month%-%Day%`, %Hour%:%Min%:%Sec%`, Started`, %rest%`n
         }
 
@@ -44,7 +45,8 @@
             Min := SubStr(trim, 16, 2)
             Sec := SubStr(trim, 19, 2)
             rest := SubStr(trim, 65)
-
+            if (rest = "")
+                continue
             Fileappend, %Year%-%Month%-%Day%`, %Hour%:%Min%:%Sec%`, Stopped`, %rest%`n
         }    
     }
