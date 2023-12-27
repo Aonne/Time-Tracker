@@ -34,6 +34,8 @@
             YMD := SubStr(line, 1,11)
             HMS := SubStr(line, 12,9)
             rest := SubStr(line, 21)
+            if (line = "")
+                continue
 
             Fileappend, %YMD%`,%HMS%`, Started`, %rest%`n 
         }
@@ -47,6 +49,8 @@
             YMD := SubStr(line, 1,11)
             HMS := SubStr(line, 12,9)
             rest := SubStr(line, 21)
+            if (line = "")
+                continue
 
             Fileappend, %YMD%`,%HMS%`, Stopped`, %rest%`n 
         }
