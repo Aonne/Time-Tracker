@@ -26,7 +26,8 @@ SetWorkingDir, %A_ScriptDir%
             YMD := SubStr(A_LoopReadLine, 3, 10)
             HMS := SubStr(A_LoopReadLine, 14, 8)
             rest := SubStr(A_LoopReadLine, 71)
-
+            if (rest = "")
+                continue
             Fileappend,  %YMD%`, %HMS%`, Started`, %rest%`n   
         }
 
@@ -35,7 +36,8 @@ SetWorkingDir, %A_ScriptDir%
             YMD := SubStr(A_LoopReadLine, 3, 10)
             HMS := SubStr(A_LoopReadLine, 14, 8)
             rest := SubStr(A_LoopReadLine, 81)
-
+            if (rest = "")
+                continue
             Fileappend,  %YMD%`, %HMS%`, Stopped`, %rest%`n  
         }
     }
