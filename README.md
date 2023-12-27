@@ -51,36 +51,3 @@ Windows 10 or 11, doesnt work on Linux or Mac.
 
 * Why Autohotkey?
   * I only know Autohotkey as I wrote a few scripts with it, nothing big. It's actually my first project that I can call that.
-
-
-# In Depth
-
-In case you still have issues or are curious about things.
-
-* Battlenet
-  *  Will search for any .log files in ```Local\Battle.net\Logs```
-* EADesktop
-  *  Will search for ```EADesktop.log``` in ```Local\Electronic Arts\EA Desktop\Logs```
-* Epic
-  *  Will search for any .log files in ```Local\EpicGamesLauncher\Saved\Logs```
-* GOG
-  *  Will search for any files in ```C:\ProgramData\GOG.com\Galaxy\logs``` (This is very inefficient and will need to be more specific)
-* Minecraft
-  * Vanilla
-    - Will search for .gz and .log files in ```Roaming\.minecraft\logs```
-  * Prism
-    - Will search for .gz and .log files in ```Prism Launcher\instances```
-  * MultiMC
-    - Will search for .gz and .log files in ```MultiMC\instances```
-  * CurseForge
-    - Will search for .gz and .log files in ```YOUR_USERNAME\curseforge\minecraft\Instances```
-* Nvidia
-  *  Will search for ```console.log``` and ```console.log.bak``` in ```Local\NVIDIA Corporation\NVIDIA Share```
-* Playnite
-  *  Will search for ```playnite.log``` in the playnite folder
-* Riot (WIP, need to do something if people download in other folders)
-  *  Will search for any .log files in ```Riot Games\Riot Client\League of Legends\Logs\LeagueClient Logs``` for *League of Legends* and ```YOUR_USERNAME\AppData\Local\VALORANT\Saved\Logs``` for *Valorant*
-* Steam
-  *  Will search for ```content_log.txt```, ```content_log.previous.txt```, ```shader_log.txt```, ```shader_log.previous.txt``` in ```Steam\logs```
-* Ubisoft
-  *  Will search for ```launcher_log.txt``` in ```Program Files (x86)\Ubisoft\Ubisoft Game Launcher\logs```
