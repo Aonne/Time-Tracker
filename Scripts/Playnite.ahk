@@ -20,6 +20,9 @@
             month := SubStr(A_LoopReadLine, 4,2)
             Htime := SubStr(A_LoopreadLine, 7, 8)
             rest := SubStr(A_LoopReadLine, 19)
+            if (rest = "")
+                continue
+
             FileGetTime, year, %A_LoopFileFullPath%, M
             Formattime, year, %year%, yyyy
             Fileappend, %year%-%month%-%day%`, %Htime%`, Started`, %rest%`n              
@@ -31,6 +34,9 @@
             month := SubStr(A_LoopReadLine, 4,2)
             Htime := SubStr(A_LoopreadLine, 7, 8)
             rest := SubStr(A_LoopReadLine, 19)
+            if (rest = "")
+                continue
+            
             FileGetTime, year, %A_LoopFileFullPath%, M
             Formattime, year, %year%, yyyy
             Fileappend, %year%-%month%-%day%`, %Htime%`, Stopped`, %rest%`n             
