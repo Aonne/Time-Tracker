@@ -25,6 +25,8 @@ SetWorkingDir, %A_ScriptDir%
             HMS := SubStr(line, 21,8)
             rest := SubStr(line, 168)
             for_Stop = %rest% ; need to find ubisoft game ids cause huh
+            if (rest = "")
+                continue
 
             Fileappend, %YMD%`, %HMS%`, Started`, %rest%`n 
         }
@@ -34,6 +36,8 @@ SetWorkingDir, %A_ScriptDir%
             if inStr(A_LoopReadLine, "ApiProcessConnection")
             {
                 line = %A_LoopReadLine%
+                if (line = "")
+                    continue
 
                 YMD := SubStr(line, 10,10)
                 HMS := SubStr(line, 21,8)
