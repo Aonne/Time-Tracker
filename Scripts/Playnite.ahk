@@ -1,5 +1,5 @@
 #SingleInstance, Force
-
+exitapp ;new year bug wip
 ; Retreive Path ========================================================================================
     Path = %A_ScriptDir%
     Path := StrReplace(Path, "Scripts", "")
