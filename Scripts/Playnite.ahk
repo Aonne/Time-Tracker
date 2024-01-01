@@ -23,7 +23,7 @@ exitapp ;new year bug wip
             if (rest = "")
                 continue
 
-            FileGetTime, year, %A_LoopFileFullPath%, M
+            FileGetTime, year, %Playnite_Path%\playnite.log, M
             Formattime, year, %year%, yyyy
             Fileappend, %year%-%month%-%day%`, %Htime%`, Started`, %rest%`n              
         }
@@ -37,7 +37,7 @@ exitapp ;new year bug wip
             if (rest = "")
                 continue
             
-            FileGetTime, year, %A_LoopFileFullPath%, M
+            FileGetTime, year, %Playnite_Path%\playnite.log, M
             Formattime, year, %year%, yyyy
             Fileappend, %year%-%month%-%day%`, %Htime%`, Stopped`, %rest%`n             
         }
