@@ -20,6 +20,12 @@ SetWorkingDir, %A_ScriptDir%
             YMD := SubStr(A_LoopReadLine, 9,10)
             HMS := SubStr(A_LoopReadLine, 20, 8)
             rest := SubStr(A_LoopReadLine, 70)
+                if instr(YMD, "T")                  ; for some reason their launcher doesnt place correctly the n° of the line
+                {
+                    YMD := SubStr(A_LoopReadLine, 7,10)
+                    HMS := SubStr(A_LoopReadLine, 18, 8)
+                    rest := SubStr(A_LoopReadLine, 68)
+                }
             For_stop = %rest%
             if (rest = "")
                 continue  
@@ -31,6 +37,12 @@ SetWorkingDir, %A_ScriptDir%
             YMD := SubStr(A_LoopReadLine, 9,10)
             HMS := SubStr(A_LoopReadLine, 20, 8)
             rest := SubStr(A_LoopReadLine, 70)
+                if instr(YMD, "T")                  ; for some reason their launcher doesnt place correctly the n° of the line
+                {
+                    YMD := SubStr(A_LoopReadLine, 7,10)
+                    HMS := SubStr(A_LoopReadLine, 18, 8)
+                    rest := SubStr(A_LoopReadLine, 68)
+                }
             if (rest = "")
                 continue  
             Fileappend, %YMD%`, %HMS%`, Stopped`, %For_stop%`n
